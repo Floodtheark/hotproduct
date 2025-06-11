@@ -20,7 +20,7 @@
     header {
       background: linear-gradient(to right, #3a3a3a, #2c2c2c);
       text-align: center;
-      padding: 3rem 1rem 2rem;
+      padding: 4rem 1rem 3rem;
       color: white;
       position: relative;
       overflow: visible;
@@ -29,44 +29,47 @@
     .smoke-wrapper {
       position: relative;
       display: inline-block;
+      padding: 1rem;
+      overflow: visible;
     }
 
     .smoke {
       position: absolute;
-      top: -60px;
-      left: 0;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(closest-side, rgba(255,255,255,0.15), transparent);
-      animation: smokeMove 4s ease-in-out infinite;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(closest-side, rgba(255,255,255,0.2), transparent);
+      animation: smokeMove 5s ease-in-out infinite;
       opacity: 0.4;
-      filter: blur(18px);
+      filter: blur(20px);
       z-index: 0;
     }
 
     @keyframes smokeMove {
-      0%   { transform: translateY(0px) scale(1); opacity: 0.3; }
-      50%  { transform: translateY(-20px) scale(1.05); opacity: 0.6; }
-      100% { transform: translateY(-40px) scale(1.1); opacity: 0.25; }
+      0%   { transform: translateX(-50%) translateY(0px) scale(1); opacity: 0.3; }
+      50%  { transform: translateX(-50%) translateY(-30px) scale(1.1); opacity: 0.6; }
+      100% { transform: translateX(-50%) translateY(-60px) scale(1.2); opacity: 0.2; }
     }
 
     .logo-stack {
       position: relative;
       z-index: 1;
       display: inline-block;
-      padding: 0 1.5rem;
+      padding: 0 2rem;
       overflow: visible;
-      transform: scale(1.05);
     }
 
     .flame {
-      font-size: 6rem;
+      font-size: 6.5rem;
       font-family: 'Bangers', cursive;
       text-transform: uppercase;
       background: linear-gradient(90deg, #ff6a00, #ff0000, #ffa500);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin: 0;
+      padding: 0.5rem 1rem;
     }
 
     .subtext {
@@ -83,7 +86,7 @@
     header p {
       font-size: 1.1rem;
       color: #ddd;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
@@ -203,4 +206,3 @@
 
 </body>
 </html>
-
