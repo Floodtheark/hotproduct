@@ -3,198 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🔥 Stream Everything for $30 | hotproduct.online</title>
+  <title>🔥 Hot Products Online – Viral Finds & Must-Haves</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #fff;
-      color: #111;
       margin: 0;
-      padding: 0;
-      text-align: center;
+      background: #fefefe;
+      color: #111;
     }
 
     header {
       background: #ffcc00;
       padding: 2rem 1rem;
+      text-align: center;
     }
 
-    h1 {
+    header h1 {
+      margin: 0;
       font-size: 2rem;
-      margin-bottom: 0.5rem;
     }
 
-    p.subtitle {
+    header p {
+      margin-top: 0.5rem;
       font-size: 1.1rem;
-      margin-top: 0;
-      color: #444;
-    }
-
-    ul.features {
-      list-style: none;
-      padding: 0;
-      max-width: 400px;
-      margin: 0 auto 2rem;
-      text-align: left;
-    }
-
-    ul.features li {
-      background: #f2f2f2;
-      margin-bottom: 0.5rem;
-      padding: 0.75rem;
-      border-radius: 6px;
-    }
-
-    .comments {
-      max-width: 400px;
-      margin: 2rem auto;
-      text-align: left;
-      font-size: 0.95rem;
       color: #333;
     }
 
-    .buy-button {
-      background-color: #ff6a00;
-      color: white;
-      text-decoration: none;
-      padding: 1rem 2rem;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
       border-radius: 6px;
-      font-weight: bold;
-      font-size: 1.2rem;
-      transition: background-color 0.3s ease;
+    }
+
+    .card h3 {
+      margin: 0.75rem 0 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .card a {
       display: inline-block;
       margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .buy-button:hover {
-      background-color: #e25600;
-    }
-
-    .urgency {
-      color: #cc0000;
+      padding: 0.6rem 1.2rem;
+      background: #ff6a00;
+      color: white;
+      border-radius: 5px;
       font-weight: bold;
-      margin-bottom: 1.5rem;
-    }
-
-    .trust-badge {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .trust-badge img {
-      width: 20px;
+      text-decoration: none;
+      font-size: 0.95rem;
     }
 
     .footer {
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-top: 2rem;
-      padding: 1rem;
-    }
-    .carousel {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  padding: 1rem;
-  scroll-snap-type: x mandatory;
-  max-width: 400px;
-  margin: 0 auto 2rem;
-  justify-content: flex-start;
-}
-
-.carousel-img {
-  height: 250px;
-  width: auto;
-  flex-shrink: 0;
-  scroll-snap-align: start;
-  border-radius: 6px;
-  transition: transform 0.3s ease;
-}
-
-.carousel-img:hover {
-  transform: scale(1.05);
-}
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-
-      .buy-button {
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
-      }
+      font-size: 0.85rem;
+      color: #777;
+      padding: 2rem 1rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🔥 Unlock Every Movie & Show in 2025</h1>
-    <p class="subtitle">Amazon Fire TV Stick 4K (newest model) with AI-powered Fire TV Search, Wi-Fi 6, stream over 1.5 million movies and shows, free & live TV</p>
+    <h1>🔥 Hot Products Online</h1>
+    <p>Internet-Viral Finds, Gadgets & Game-Changers — All in One Spot</p>
   </header>
 
-<div class="carousel">
-  <img src="fs2.jpg" alt="Product 1" class="carousel-img">
-  <img src="fs1.jpg" alt="Product 2" class="carousel-img">
-  <img src="fs3.jpg" alt="Product 3" class="carousel-img">
-  <img src="fs4.jpg" alt="Product 4" class="carousel-img">
-  <img src="fs5.jpg" alt="Product 5" class="carousel-img">
-  <img src="fs6.jpg" alt="Product 6" class="carousel-img">
-</div>
+  <section class="grid">
+    <!-- Firestick Product Card -->
+    <div class="card">
+      <img src="fs2.jpg" alt="Amazon Fire Stick">
+      <h3>Amazon Fire Stick</h3>
+      <p>Stream anything. Ditch cable. TikTok’s favorite streaming hack.</p>
+      <a href="/firestick.html">See Product →</a>
+    </div>
 
-  <ul class="features">
-    <li>🎯 1,500,000+ shows, movies & channels</li>
-    <li>🧠 Installs in seconds — no tech skills required</li>
-    <li>🔓 Unlock streaming apps they don’t want you to know about</li>
-  </ul>
+    <!-- Placeholder for Next Product -->
+    <div class="card">
+      <img src="fish.jpg" alt="Floppy Fish Toy">
+      <h3>Floppy Fish Toy</h3>
+      <p>This wiggling toy drives pets wild. It’s motion-activated and hilarious.</p>
+      <a href="/floppy-fish.html">See Product →</a>
+    </div>
 
-  <div class="comments">
-    <p>💬 <strong>@streamqueen88</strong>: “This thing changed my life. Got every movie now.”</p>
-    <p>💬 <strong>@cordcutterdad</strong>: “No more cable bills 😤”</p>
-    <p>💬 <strong>@techhacktok</strong>: “You can sideload secret apps too 👀”</p>
-  </div>
-
-  <a href="https://amzn.to/43QUG81" target="_blank" class="buy-button">
-    Buy Now on Amazon
-  </a>
-
-  <div class="urgency">
-    ⚠️ Limited stock! Deal expires in <span id="timer">05:00</span>
-  </div>
-
-  <div class="trust-badge">
-    <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="Secure Icon" />
-    <span>Redirects securely to Amazon.com</span>
-  </div>
+    <!-- Add more product cards below as needed -->
+  </section>
 
   <div class="footer">
-    <div class="footer">
-  hotproduct.online may earn commissions from affiliate links
-</div>
-
+    hotproduct.online may earn commissions from qualifying purchases  
+    <br>Copyright © 2025
   </div>
-
-  <script>
-    let time = 300;
-    const timer = document.getElementById('timer');
-    setInterval(() => {
-      if (time > 0) {
-        let min = Math.floor(time / 60);
-        let sec = time % 60;
-        timer.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
-        time--;
-      } else {
-        timer.textContent = "EXPIRED";
-      }
-    }, 1000);
-  </script>
 </body>
 </html>
-
-
