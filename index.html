@@ -26,33 +26,6 @@
       overflow: visible;
     }
 
-    .smoke-wrapper {
-      position: relative;
-      display: inline-block;
-      padding: 1rem;
-      overflow: visible;
-    }
-
-    .smoke {
-      position: absolute;
-      top: -80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 280px;
-      height: 280px;
-      background: radial-gradient(closest-side, rgba(255,255,255,0.2), transparent);
-      animation: smokeMove 5s ease-in-out infinite;
-      opacity: 0.4;
-      filter: blur(20px);
-      z-index: 0;
-    }
-
-    @keyframes smokeMove {
-      0%   { transform: translateX(-50%) translateY(0px) scale(1); opacity: 0.3; }
-      50%  { transform: translateX(-50%) translateY(-30px) scale(1.1); opacity: 0.6; }
-      100% { transform: translateX(-50%) translateY(-60px) scale(1.2); opacity: 0.2; }
-    }
-
     .logo-stack {
       position: relative;
       z-index: 1;
@@ -164,8 +137,6 @@
 <body>
 
   <header>
-    <div class="smoke-wrapper">
-      <div class="smoke"></div>
       <div class="logo-stack">
         <h1 class="flame">HOT</h1>
         <span class="subtext">product.online</span>
