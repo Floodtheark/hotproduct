@@ -3,72 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🔥 Hot Products Online – Viral Finds & Must-Haves</title>
+  <title>Hot Products Online – Trending Finds That Actually Deliver</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #fefefe;
+      background: #fffefa;
       color: #111;
+      margin: 0;
+      padding: 0;
     }
 
     header {
-      background: #ffcc00;
-      padding: 2rem 1rem;
+      background: #ffe95c;
       text-align: center;
+      padding: 2.5rem 1rem;
     }
 
     header h1 {
+      font-size: 2.2rem;
       margin: 0;
-      font-size: 2rem;
     }
 
     header p {
-      margin-top: 0.5rem;
       font-size: 1.1rem;
-      color: #333;
+      margin-top: 0.5rem;
+      color: #444;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 1200px;
+    .highlight-section {
+      padding: 2rem 1rem;
+      max-width: 1100px;
       margin: auto;
     }
 
-    .card {
+    .highlight-section h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 1rem;
       text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       transition: transform 0.2s ease;
     }
 
-    .card:hover {
+    .product-card:hover {
       transform: scale(1.02);
     }
 
-    .card img {
+    .product-card img {
       width: 100%;
       height: 150px;
       object-fit: contain;
       border-radius: 6px;
     }
 
-    .card h3 {
+    .product-card h3 {
       margin: 0.75rem 0 0.5rem;
     }
 
-    .card p {
+    .product-card p {
       font-size: 0.95rem;
       color: #444;
+      min-height: 48px;
     }
 
-    .card a {
+    .product-card a {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.6rem 1.2rem;
@@ -77,44 +91,56 @@
       border-radius: 5px;
       font-weight: bold;
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .footer {
+      text-align: center;
+      padding: 2rem 1rem;
       font-size: 0.85rem;
       color: #777;
-      padding: 2rem 1rem;
-      text-align: center;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🔥 Hot Products Online</h1>
-    <p>Internet-Viral Finds, Gadgets & Game-Changers — All in One Spot</p>
+    <h1>Hot Products Online</h1>
+    <p>
+      We hand-pick the most talked-about gadgets, tools, and TikTok-famous products —
+      and break them down so you know what’s worth it before you buy.
+    </p>
   </header>
 
-  <section class="grid">
-    <!-- Firestick Product Card -->
-    <div class="card">
-      <img src="fs2.jpg" alt="Amazon Fire Stick">
-      <h3>Amazon Fire Stick</h3>
-      <p>Stream anything. Ditch cable. TikTok’s favorite streaming hack.</p>
-      <a href="/firestick.html">See Product →</a>
-    </div>
+  <section class="highlight-section">
+    <h2>🚀 Trending Now</h2>
+    <div class="product-grid">
+      
+      <!-- 🔥 Firestick -->
+      <div class="product-card">
+        <img src="fs2.jpg" alt="Amazon Fire Stick">
+        <h3>Amazon Fire Stick</h3>
+        <p>Unlock every show. Replace cable. Plug-and-play freedom.</p>
+        <a href="/firestick.html">See Product →</a>
+      </div>
 
-    <!-- Placeholder for Next Product -->
-    <div class="card">
-      <img src="fish.jpg" alt="Floppy Fish Toy">
-      <h3>Floppy Fish Toy</h3>
-      <p>This wiggling toy drives pets wild. It’s motion-activated and hilarious.</p>
-      <a href="/floppy-fish.html">See Product →</a>
-    </div>
+      <!-- ⚡ Placeholder for Future Products -->
+      <div class="product-card">
+        <img src="placeholder.jpg" alt="Coming Soon">
+        <h3>Next Hot Product</h3>
+        <p>Another viral winner is loading...</p>
+        <a href="#">Coming Soon</a>
+      </div>
 
-    <!-- Add more product cards below as needed -->
+    </div>
   </section>
 
   <div class="footer">
+    hotproduct.online may earn commissions from qualifying purchases
+    <br>Copyright © 2025
+  </div>
+</body>
+</html>
+
     hotproduct.online may earn commissions from qualifying purchases  
     <br>Copyright © 2025
   </div>
