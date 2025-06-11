@@ -100,16 +100,66 @@
       font-size: 0.85rem;
       color: #777;
     }
+    header {
+  background: linear-gradient(to right, #2b2b2b, #1f1f1f);
+  padding: 3rem 1rem 2rem;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.logo-stack {
+  display: inline-block;
+  position: relative;
+}
+
+.flame {
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff6a00, #ff0000, #ffa500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flicker 0.8s infinite alternate;
+  letter-spacing: 0.05em;
+}
+
+.subtext {
+  position: absolute;
+  bottom: -1.2rem;
+  right: -2.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  color: #ffcc00;
+  transform: rotate(-2deg);
+}
+
+header p {
+  font-size: 1.1rem;
+  color: #ddd;
+  margin-top: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes flicker {
+  0%   { opacity: 1; text-shadow: 0 0 6px #ff0, 0 0 20px #f00; }
+  100% { opacity: 0.85; text-shadow: 0 0 8px #ffa500, 0 0 12px #ff0000; }
+}
+
   </style>
 </head>
 <body>
-  <header>
-    <h1>Hot Products Online</h1>
-    <p>
-      We hand-pick the most talked-about gadgets, tools, and TikTok-famous products —
-      and break them down so you know what’s worth it before you buy.
-    </p>
-  </header>
+<header>
+  <div class="logo-stack">
+    <h1 class="flame">HOT</h1>
+    <span class="subtext">products.online</span>
+  </div>
+  <p>
+    Viral gadgets. Wild tools. Internet-famous must-haves — broken down and linked up.
+  </p>
+</header>
 
   <section class="highlight-section">
     <h2>🚀 Trending Now</h2>
