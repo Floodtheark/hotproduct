@@ -23,29 +23,29 @@
       position: relative;
     }
 
-    .smoke-wrapper {
-      position: relative;
-      display: inline-block;
-    }
+   .smoke-wrapper {
+  position: relative;
+  display: inline-block;
+}
 
-    .smoke {
-      position: absolute;
-      top: -30px;
-      left: -40px;
-      width: 160px;
-      height: 160px;
-      background: radial-gradient(closest-side, rgba(255,255,255,0.1), transparent);
-      animation: smokeMove 4s ease-in-out infinite;
-      opacity: 0.5;
-      filter: blur(14px);
-      z-index: 0;
-    }
+.smoke {
+  position: absolute;
+  top: -30px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(closest-side, rgba(255,255,255,0.15), transparent);
+  animation: smokeMove 4s ease-in-out infinite;
+  opacity: 0.5;
+  filter: blur(14px);
+  z-index: 0;
+}
 
-    @keyframes smokeMove {
-      0% { transform: translateY(0px) scale(1); opacity: 0.4; }
-      50% { transform: translateY(-20px) scale(1.05); opacity: 0.7; }
-      100% { transform: translateY(-40px) scale(1.1); opacity: 0.3; }
-    }
+@keyframes smokeMove {
+  0%   { transform: translateY(0px) scale(1); opacity: 0.4; }
+  50%  { transform: translateY(-20px) scale(1.05); opacity: 0.7; }
+  100% { transform: translateY(-40px) scale(1.1); opacity: 0.3; }
+}
 
     .logo-stack {
       position: relative;
@@ -170,13 +170,13 @@
 <body>
 
   <header>
-    <div class="smoke-wrapper">
-      <div class="smoke"></div>
-      <div class="logo-stack">
-        <h1 class="flame">HOT</h1>
-        <span class="subtext">product.online</span>
-      </div>
-    </div>
+   <div class="smoke-wrapper">
+  <div class="smoke"></div>
+  <div class="logo-stack">
+    <h1 class="flame">HOT</h1>
+    <span class="subtext">product.online</span>
+  </div>
+</div>
     <p>
       Viral gadgets. Wild tools. Internet-famous must-haves — broken down and linked up.
     </p>
