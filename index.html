@@ -17,20 +17,26 @@
       padding: 0;
     }
 
-    header {
-      background-image: url('fire.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 600px;
-      text-align: center;
-      color: white;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem 1rem 3rem;
-    }
+  header {
+  background-image: url('fire.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 550px; /* was 600px */
+  color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* ✅ center the logo content */
+  padding: 0 1rem;
+  text-align: center;
+}
+    .banner-content {
+  max-width: 700px;
+  width: 100%;
+  padding: 1rem;
+}
 
     .logo-stack {
       position: relative;
@@ -52,18 +58,16 @@
       font-weight: 900; /* 🔥 Made BOLDER */
     }
 
-    .subtext {
-      position: absolute;
-      bottom: -2.2rem;
-      right: -3.5rem;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-      color: #ffcc00;
-      text-shadow: 1px 1px 2px #000;
-      transform: rotate(-2deg);
-      font-weight: 900; /* 🔥 Made BOLDER */
-    }
-
+.subtext {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ffcc00;
+  text-shadow: 1px 1px 2px #000;
+  transform: rotate(-2deg);
+  margin-top: 0.5rem;
+}
     header p {
       font-size: 1.1rem;
       color: #ddd;
@@ -145,13 +149,15 @@
 </head>
 <body>
 
-  <header>
+<header>
+  <div class="banner-content">
     <div class="logo-stack">
       <h1 class="flame">HOT</h1>
       <span class="subtext">product.online</span>
     </div>
     <p>Viral gadgets. Wild tools. Internet-famous must-haves — broken down and linked up.</p>
-  </header>
+  </div>
+</header>
 
   <section class="highlight-section">
     <h2>🚀 Trending Now</h2>
