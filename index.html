@@ -18,18 +18,39 @@
     }
 
     header {
-      background-image: url('fire.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 600px;
+      background: linear-gradient(to right, #aaa, #888);
       text-align: center;
+      padding: 4rem 1rem 3rem;
       color: white;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 1rem;
+      overflow: visible;
+    }
+
+    .smoke-wrapper {
+      position: relative;
+      display: inline-block;
+      padding: 1rem;
+      overflow: visible;
+    }
+
+    .smoke {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(closest-side, rgba(255,255,255,0.2), transparent);
+      animation: smokeMove 5s ease-in-out infinite;
+      opacity: 0.4;
+      filter: blur(20px);
+      z-index: 0;
+    }
+
+    @keyframes smokeMove {
+      0%   { transform: translateX(-50%) translateY(0px) scale(1); opacity: 0.3; }
+      50%  { transform: translateX(-50%) translateY(-30px) scale(1.1); opacity: 0.6; }
+      100% { transform: translateX(-50%) translateY(-60px) scale(1.2); opacity: 0.2; }
     }
 
     .logo-stack {
@@ -37,6 +58,7 @@
       z-index: 1;
       display: inline-block;
       padding: 0 2rem;
+      overflow: visible;
     }
 
     .flame {
@@ -51,22 +73,21 @@
     }
 
     .subtext {
-      display: block;
+      position: absolute;
+      bottom: -2.2rem;
+      right: -3.5rem;
       font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #fff;
-      margin-top: -1.2rem;
-      text-shadow: 2px 2px 4px #000;
+      font-size: 2rem;
+      color: #ffcc00;
+      text-shadow: 1px 1px 2px #000;
+      transform: rotate(-2deg);
     }
 
     header p {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 1px 1px 2px #000;
-      margin-top: 1.5rem;
-      max-width: 800px;
+      font-size: 1.1rem;
+      color: #ddd;
+      margin-top: 2.5rem;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -143,12 +164,16 @@
 <body>
 
   <header>
+    <div class="smoke-wrapper">
+      <div class="smoke"></div>
       <div class="logo-stack">
         <h1 class="flame">HOT</h1>
         <span class="subtext">product.online</span>
       </div>
     </div>
-    <p>Viral gadgets. Wild tools. Internet-famous must-haves — broken down and linked up.</p>
+    <p>
+      Viral gadgets. Wild tools. Internet-famous must-haves — broken down and linked up.
+    </p>
   </header>
 
   <section class="highlight-section">
