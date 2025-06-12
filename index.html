@@ -37,14 +37,15 @@
   padding: 1rem;
 }
 
-    .logo-stack {
-      position: relative;
-      z-index: 1;
-      display: inline-block;
-      padding: 0 2rem;
-      overflow: visible;
-      padding-right: 4rem;
-    }
+.logo-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  transform: none; /* override horizontal shift */
+}
 
 .flame {
   font-size: 13rem;
@@ -53,32 +54,23 @@
   background: linear-gradient(90deg, #ff3c00, #ff6600, #ffaa00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin: 0;
-  padding: 0.5rem 1rem 0.5rem 2rem;
   font-weight: 900;
-  white-space: nowrap;
-  overflow: visible;
-  padding-right: 3rem;
-  margin-right: 1rem;
-
-  transform: translateX(-40%);
+  margin: 0;
+  padding: 0;
   text-shadow:
     1px 1px 2px rgba(0, 0, 0, 0.35),
     0 0 10px rgba(255, 140, 0, 0.4);
 }
 
 .subtext {
-  display: block;
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
   font-weight: 900;
   color: #ffcc00;
   text-shadow: 1px 1px 2px #000;
-
-  position: absolute;
-  top: 4rem;         /* ✅ move upward */
-  left: 50%;         /* ✅ shift right next to HOT */
-  transform: rotate(-5deg);
+  transform: none;
+  position: static;
+  margin-top: -2rem; /* slight upward nudge */
 }
     header p {
       font-size: 1.1rem;
