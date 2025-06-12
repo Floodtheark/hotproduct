@@ -157,18 +157,28 @@
       font-size: 0.85rem;
       color: #777;
     }
-    @media (max-width: 600px) {
+ 
+@media (max-width: 600px) {
+  .logo-stack {
+    text-align: center;
+    padding-right: 0;
+  }
+
   .flame {
     font-size: 6.5rem;
-    transform: translateX(-20%);
-    padding-right: 1rem;
-    margin-right: 0;
+    transform: none;
+    padding: 0.5rem 0;
+    margin: 0 auto;
   }
 
   .subtext {
+    position: relative;
+    top: 0;
+    left: 0;
     font-size: 1.5rem;
-    top: 2.2rem;
-    left: 55%;
+    transform: rotate(-5deg);
+    display: block;
+    margin-top: -1rem;
   }
 
   .highlight-section h2 {
