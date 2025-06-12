@@ -55,14 +55,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 2rem; /* extra left padding */
   font-weight: 900;
-  overflow: visible;
   white-space: nowrap;
+  overflow: visible;
 
- text-shadow:
-  1px 1px 2px rgba(0, 0, 0, 0.35),
-  0 0 10px rgba(255, 140, 0, 0.4);
+  transform: translateX(-8%); /* ✅ shift HOT slightly left */
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.35),
+    0 0 10px rgba(255, 140, 0, 0.4);
 }
 
 .subtext {
@@ -72,7 +73,7 @@
   font-weight: 900;
   color: #ffcc00;
   text-shadow: 1px 1px 2px #000;
-  transform: rotate(-2deg);
+  transform: rotate(-5deg) translateX(-15px); /* ✅ more tilt + left lean */
   margin-top: 0.5rem;
 }
     header p {
