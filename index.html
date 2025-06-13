@@ -10,136 +10,116 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to top, #ff944d, #ffc285, #fff8ed);
+      background: linear-gradient(to top, #ff3300, #ff6600, #ffcc00);
       color: #111;
       margin: 0;
       padding: 0;
     }
 
-  header {
-  background-image: url('fire.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 300px;
-  color: white;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 1rem;
-  text-align: center;
-}
+    header {
+      background-image: url('fire.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 300px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 1rem;
+      text-align: center;
+      position: relative;
+    }
+
     .banner-content {
-  max-width: 700px;
-  width: 100%;
-  padding: 1rem;
-}
+      max-width: 700px;
+      width: 100%;
+      padding: 1rem;
+    }
 
     .logo-stack {
       position: relative;
       z-index: 1;
       display: inline-block;
-      padding: 0 2rem;
-      overflow: visible;
-      padding-right: 4rem;
+      padding: 0 2rem 0 2rem;
     }
 
-.flame {
-  font-size: 13rem;
-  font-family: 'Bangers', cursive;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #ff3c00, #ff6600, #ffaa00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
-  padding: 0.5rem 1rem 0.5rem 2rem;
-  font-weight: 900;
-  white-space: nowrap;
-  overflow: visible;
-  padding-right: 3rem;
-  margin-right: 1rem;
+    .flame {
+      font-size: 13rem;
+      font-family: 'Bangers', cursive;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ff3c00, #ff6600, #ffaa00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+      padding: 0.5rem 1rem 0.5rem 2rem;
+      font-weight: 900;
+      white-space: nowrap;
+      text-shadow:
+        1px 1px 2px rgba(0, 0, 0, 0.35),
+        0 0 10px rgba(255, 140, 0, 0.4);
+      transform: translateX(-40%);
+    }
 
-  transform: translateX(-40%);
-  text-shadow:
-    1px 1px 2px rgba(0, 0, 0, 0.35),
-    0 0 10px rgba(255, 140, 0, 0.4);
-}
-
-.subtext {
-  display: block;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3rem;
-  font-weight: 900;
-  color: #ffcc00;
-  text-shadow: 1px 1px 2px #000;
-
-  position: absolute;
-  top: 4rem;         /* ✅ move upward */
-  left: 50%;         /* ✅ shift right next to HOT */
-  transform: rotate(-5deg);
-}
-    header p {
-      font-size: 1.1rem;
-      color: #ddd;
-      margin-top: 2.5rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      font-weight: 700; /* 🔥 Made BOLDER */
+    .subtext {
+      display: block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: #ffcc00;
+      text-shadow: 1px 1px 2px #000;
+      position: absolute;
+      top: 4rem;
+      left: 50%;
+      transform: rotate(-5deg);
     }
 
     .highlight-section {
       padding: 2rem 1rem;
-      max-width: 1100px;
+      max-width: 1000px;
       margin: auto;
     }
 
     .highlight-section h2 {
       text-align: center;
       margin-bottom: 1.5rem;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
     }
 
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    .product-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .product-entry {
+      display: flex;
+      flex-wrap: wrap;
+      background: rgba(255,255,255,0.95);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       gap: 1.5rem;
     }
 
-    .product-card {
-      background: #fff;
-      border: 1px solid #ddd;
+    .product-entry img {
+      width: 160px;
       border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
-    }
-
-    .product-card:hover {
-      transform: scale(1.02);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 150px;
       object-fit: contain;
-      border-radius: 6px;
     }
 
-    .product-card h3 {
-      margin: 0.75rem 0 0.5rem;
+    .product-entry h2 {
+      margin-top: 0;
     }
 
-    .product-card p {
-      font-size: 0.95rem;
-      color: #444;
-      min-height: 48px;
+    .product-entry ul {
+      padding-left: 1.25rem;
     }
 
-    .product-card a {
+    .product-entry a {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.6rem 1.2rem;
@@ -148,7 +128,10 @@
       border-radius: 5px;
       font-weight: bold;
       text-decoration: none;
-      font-size: 0.9rem;
+    }
+
+    .product-entry a.amazon {
+      background: #232f3e;
     }
 
     .footer {
@@ -157,47 +140,33 @@
       font-size: 0.85rem;
       color: #777;
     }
- 
-@media (max-width: 600px) {
-  .logo-stack {
-    text-align: center;
-    padding-right: 0;
-  }
 
-  .flame {
-    font-size: 6.5rem;
-    transform: none;
-    padding: 0.5rem 0;
-    margin: 0 auto;
-  }
+    @media (max-width: 600px) {
+      .flame {
+        font-size: 6.5rem;
+        transform: none;
+        margin: 0 auto;
+        padding: 0.5rem 0;
+      }
 
-  .subtext {
-    position: relative;
-    top: 0;
-    left: 0;
-    font-size: 1.5rem;
-    transform: rotate(-5deg);
-    display: block;
-    margin-top: -1rem;
-  }
+      .subtext {
+        position: relative;
+        top: 0;
+        left: 0;
+        font-size: 1.5rem;
+        margin-top: -1rem;
+      }
 
-  .highlight-section h2 {
-    font-size: 1.25rem;
-  }
+      .product-entry {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
 
-  .product-card p {
-    min-height: auto;
-  }
-
-  .product-card img {
-    height: 120px;
-  }
-
-  .footer {
-    font-size: 0.75rem;
-    padding: 1.5rem 1rem;
-  }
-}
+      .product-entry img {
+        height: 120px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -211,70 +180,68 @@
   </div>
 </header>
 
-<section class="highlight-section" style="max-width: 900px; margin: auto;">
+<section class="highlight-section">
   <h2>📚 Digital Playbook Collection</h2>
+  <div class="product-section">
 
- <div style="max-width: 1000px; margin: auto; padding: 2rem; font-family: Arial, sans-serif; line-height: 1.6;">
-
-  <!-- Starter Kit -->
-  <div style="display: flex; margin-bottom: 2.5rem;">
-    <img src="TN.png" alt="Starter Kit" style="width: auto; height: 160px; margin-right: 1.5rem; border-radius: 8px;" />
-    <div>
-      <h2>Build Your Digital Empire: Affiliate Marketing Starter Kit</h2>
-      <p><strong>Launch Your Affiliate Biz from Scratch — This Week</strong></p>
-      <p>Tired of watching everyone else print $$$ with affiliate links while you sit on the sidelines?</p>
-      <p>This Starter Kit is your step-by-step guide on how to launch a real affiliate marketing business — even if you’ve got no followers, no cash, and no clue where to start.</p>
-      <ul>
-        <li>✅ Free + Paid options (all tools linked)</li>
-        <li>✅ Click-by-click setup instructions</li>
-        <li>✅ The same blueprint used by top creators</li>
-        <li>✅ Templates, checklists, and growth shortcuts</li>
-      </ul>
-      <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank" style="background: #ff6a00; color: white; padding: 0.6rem 1.2rem; text-decoration: none; font-weight: bold; border-radius: 5px;">Get the Starter Kit →</a>
+    <!-- Starter Kit -->
+    <div class="product-entry">
+      <img src="TN.png" alt="Starter Kit">
+      <div>
+        <h2>Build Your Digital Empire: Affiliate Marketing Starter Kit</h2>
+        <p><strong>Launch Your Affiliate Biz from Scratch — This Week</strong></p>
+        <p>Tired of watching everyone else print $$$ with affiliate links while you sit on the sidelines?</p>
+        <p>This Starter Kit is your step-by-step guide on how to launch a real affiliate marketing business — even if you’ve got no followers, no cash, and no clue where to start.</p>
+        <ul>
+          <li>✅ Free + Paid options (all tools linked)</li>
+          <li>✅ Click-by-click setup instructions</li>
+          <li>✅ The same blueprint used by top creators</li>
+          <li>✅ Templates, checklists, and growth shortcuts</li>
+        </ul>
+        <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank">Get the Starter Kit →</a>
+      </div>
     </div>
-  </div>
 
-  <!-- Book 1 -->
-  <div style="display: flex; margin-bottom: 2.5rem;">
-    <img src="GNW.jpg" alt="Gatekeepers Not Welcome" style="width: 160px; margin-right: 1.5rem; border-radius: 8px;" />
-    <div>
-      <h2>GATEKEEPERS NOT WELCOME</h2>
-      <p><em>Digitally Remastered</em> Book 1</p>
-      <p>🚀 Forget waiting for permission! Learn how to build a profitable digital marketing business from scratch—without spending a dime. Master organic growth, free traffic strategies, and proven systems to start earning now.</p>
-      <a href="https://amzn.to/4kCs6yi" target="_blank" style="background: #232f3e; color: white; padding: 0.6rem 1.2rem; text-decoration: none; font-weight: bold; border-radius: 5px;">Get on Amazon →</a>
+    <!-- Book 1 -->
+    <div class="product-entry">
+      <img src="GNW.jpg" alt="Gatekeepers Not Welcome">
+      <div>
+        <h2>GATEKEEPERS NOT WELCOME</h2>
+        <p><em>Digitally Remastered</em> Book 1</p>
+        <p>🚀 Forget waiting for permission! Learn how to build a profitable digital marketing business from scratch—without spending a dime. Master organic growth, free traffic strategies, and proven systems to start earning now.</p>
+        <a href="https://amzn.to/4kCs6yi" class="amazon" target="_blank">Get on Amazon →</a>
+      </div>
     </div>
-  </div>
 
-  <!-- Book 2 -->
-  <div style="display: flex; margin-bottom: 2.5rem;">
-    <img src="CTG.jpg" alt="Changing the Game" style="width: 160px; margin-right: 1.5rem; border-radius: 8px;" />
-    <div>
-      <h2>CHANGING THE GAME</h2>
-      <p><em>Digitally Remastered</em> Book 2</p>
-      <p>🤖 AI isn’t the future—it’s the NOW. Discover how to leverage AI tools to create content, influence people, and automate success. Whether it’s copywriting, social media, or personal branding, this book shows you how AI can revolutionize your life.</p>
-      <a href="https://amzn.to/4jLbmnm" target="_blank" style="background: #232f3e; color: white; padding: 0.6rem 1.2rem; text-decoration: none; font-weight: bold; border-radius: 5px;">Get on Amazon →</a>
+    <!-- Book 2 -->
+    <div class="product-entry">
+      <img src="CTG.jpg" alt="Changing the Game">
+      <div>
+        <h2>CHANGING THE GAME</h2>
+        <p><em>Digitally Remastered</em> Book 2</p>
+        <p>🤖 AI isn’t the future—it’s the NOW. Discover how to leverage AI tools to create content, influence people, and automate success. Whether it’s copywriting, social media, or personal branding, this book shows you how AI can revolutionize your life.</p>
+        <a href="https://amzn.to/4jLbmnm" class="amazon" target="_blank">Get on Amazon →</a>
+      </div>
     </div>
-  </div>
 
-  <!-- Book 3 -->
-  <div style="display: flex; margin-bottom: 2.5rem;">
-    <img src="AIH.jpg" alt="AI Hustle & Flow" style="width: 160px; margin-right: 1.5rem; border-radius: 8px;" />
-    <div>
-      <h2>AI HUSTLE & FLOW</h2>
-      <p><em>Digitally Remastered</em> Book 3</p>
-      <p>💰 Digital marketing has cheat codes—and this book hands them to you. Learn how to use AI-driven systems to generate income daily, automate your workflow, and dominate the game. You’re a player—so play to win.</p>
-      <a href="https://amzn.to/4kYZKy1" target="_blank" style="background: #232f3e; color: white; padding: 0.6rem 1.2rem; text-decoration: none; font-weight: bold; border-radius: 5px;">Get on Amazon →</a>
+    <!-- Book 3 -->
+    <div class="product-entry">
+      <img src="AIH.jpg" alt="AI Hustle & Flow">
+      <div>
+        <h2>AI HUSTLE & FLOW</h2>
+        <p><em>Digitally Remastered</em> Book 3</p>
+        <p>💰 Digital marketing has cheat codes—and this book hands them to you. Learn how to use AI-driven systems to generate income daily, automate your workflow, and dominate the game. You’re a player—so play to win.</p>
+        <a href="https://amzn.to/4kYZKy1" class="amazon" target="_blank">Get on Amazon →</a>
+      </div>
     </div>
+
   </div>
- </div>
 </section>
 
-  <div class="footer">
-    hotproduct.online may earn commissions from qualifying purchases  
-    <br>Copyright © 2025
-  </div>
+<div class="footer">
+  hotproduct.online may earn commissions from qualifying purchases  
+  <br>Copyright © 2025
+</div>
 
 </body>
 </html>
-
-
