@@ -283,22 +283,13 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
   height: 44px;
   background: url('charred-wood.png') repeat-x center -4px;
   background-size: auto 100%;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 -4px 10px rgba(0, 0, 0, 0.4),
+    0 10px 20px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 2;
   overflow: hidden;
-  margin-top: -1px; /* closes the gap */
-}
-.flame-border::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 16px;
-  background: linear-gradient(to bottom, transparent, #fff4e1); /* match your page's lightest BG */
-  z-index: 3;
-  pointer-events: none;
+  margin-top: -1px;
 }
 
     .footer {
