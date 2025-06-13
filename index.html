@@ -247,7 +247,6 @@
     .buy-button-wrap a:hover + .flame-overlay {
       display: block;
     }
-
 .header-fire {
   position: absolute;
   bottom: 0;
@@ -255,17 +254,16 @@
   width: 100%;
   height: 60px;
   pointer-events: none;
-  z-index: 0;
 
   background: url('fire.gif') center bottom no-repeat;
   background-size: 100% auto;
-  background-position: center bottom;
 
+  /* Put the gif ON TOP of the banner image but still under text */
+  z-index: 2;
+
+  /* Adjust brightness and blending */
   mix-blend-mode: screen;
-  opacity: 0.9;
-
-  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 70%, transparent);
-  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 70%, transparent);
+  opacity: 0.85;
 }
 
 /* Dark overlay to soften brightness */
