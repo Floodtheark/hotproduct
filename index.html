@@ -96,12 +96,16 @@
     .product-entry {
       display: flex;
       flex-wrap: wrap;
-      background: rgba(255,255,255,0.95);
       padding: 1.5rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       gap: 1.5rem;
     }
+
+    .product-orange { background: #fff3e6; }
+    .product-red    { background: #ffe5e5; }
+    .product-green  { background: #e6fff2; }
+    .product-blue   { background: #e6f7ff; }
 
     .product-image {
       max-width: 160px;
@@ -149,8 +153,6 @@
     .product-entry .buy-top a {
       display: inline-block;
       padding: 0.7rem 1.6rem;
-      background: linear-gradient(145deg, #ff5500, #ff9900);
-      color: #fff;
       font-family: 'Orbitron', sans-serif;
       font-weight: 900;
       font-size: 1rem;
@@ -158,62 +160,23 @@
       text-transform: uppercase;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
       border-radius: 10px;
-      box-shadow: inset 0 0 0 rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.3);
       transition: all 0.25s ease;
     }
 
-    .product-entry .buy-top a.red-btn {
-      background: linear-gradient(135deg, #d60000, #ff3333);
-      color: #fff;
-    }
-
-    .product-entry .buy-top a.green-btn {
-      background: linear-gradient(135deg, #00cc44, #66ff66);
-      color: #000;
-      text-shadow: 0 1px 2px rgba(255,255,255,0.2);
-    }
-
-    .product-entry .buy-top a.blue-btn {
-      background: linear-gradient(135deg, #0077cc, #33ccff);
-      color: #fff;
-    }
+    .product-entry .buy-top a.amazon { background: #232f3e; color: #fff; }
+    .product-entry .buy-top a.orange-btn { background: linear-gradient(145deg, #ff5500, #ff9900); color: #fff; }
+    .product-entry .buy-top a.red-btn { background: linear-gradient(145deg, #cc0000, #ff4d4d); color: #fff; }
+    .product-entry .buy-top a.green-btn { background: linear-gradient(145deg, #00cc66, #99ffcc); color: #000; }
+    .product-entry .buy-top a.blue-btn { background: linear-gradient(145deg, #0077cc, #66ccff); color: #fff; }
 
     .product-entry .buy-top a:hover {
       transform: scale(1.07);
-      box-shadow: 0 0 20px 6px rgba(255, 106, 0, 0.85);
     }
 
-    .product-entry .buy-top a.red-btn:hover {
-      box-shadow: 0 0 20px 6px rgba(255, 30, 30, 0.75);
-    }
-
-    .product-entry .buy-top a.green-btn:hover {
-      box-shadow: 0 0 20px 6px rgba(57, 255, 20, 0.75);
-    }
-
-    .product-entry .buy-top a.blue-btn:hover {
-      box-shadow: 0 0 20px 6px rgba(0, 200, 255, 0.75);
-    }
-
-    .product-image img.glow-orange:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 20px 6px rgba(255, 110, 0, 0.75);
-    }
-
-    .product-image img.glow-red:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 20px 6px rgba(255, 30, 30, 0.75);
-    }
-
-    .product-image img.glow-green:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 20px 6px rgba(57, 255, 20, 0.75);
-    }
-
-    .product-image img.glow-blue:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 20px 6px rgba(0, 200, 255, 0.75);
-    }
+    .product-image img.glow-orange:hover { box-shadow: 0 0 20px 6px rgba(255, 110, 0, 0.75); transform: scale(1.07); }
+    .product-image img.glow-red:hover    { box-shadow: 0 0 20px 6px rgba(255, 30, 30, 0.75); transform: scale(1.07); }
+    .product-image img.glow-green:hover  { box-shadow: 0 0 20px 6px rgba(57, 255, 20, 0.75); transform: scale(1.07); }
+    .product-image img.glow-blue:hover   { box-shadow: 0 0 20px 6px rgba(0, 200, 255, 0.75); transform: scale(1.07); }
 
     .footer {
       text-align: center;
@@ -269,8 +232,7 @@
   <h2>📚 Digital Playbook Collection</h2>
   <div class="product-section">
 
-    <!-- Starter Kit -->
-    <div class="product-entry">
+    <div class="product-entry product-orange">
       <div class="product-image">
         <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank">
           <img src="TN.png" alt="Starter Kit" class="glow-orange">
@@ -278,7 +240,7 @@
       </div>
       <div class="product-content">
         <div class="buy-top">
-          <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank">Get the Starter Kit →</a>
+          <a href="https://hotproductonline.gumroad.com/l/ymoxxl" class="orange-btn" target="_blank">Get the Starter Kit →</a>
         </div>
         <h2>Build Your Digital Empire: Affiliate Marketing Starter Kit</h2>
         <p><strong>Launch Your Affiliate Biz from Scratch — This Week</strong></p>
@@ -293,8 +255,7 @@
       </div>
     </div>
 
-    <!-- Book 1 -->
-    <div class="product-entry">
+    <div class="product-entry product-red">
       <div class="product-image">
         <a href="https://amzn.to/4kCs6yi" target="_blank">
           <img src="GNW.jpg" alt="Gatekeepers Not Welcome" class="glow-red">
@@ -310,8 +271,7 @@
       </div>
     </div>
 
-    <!-- Book 2 -->
-    <div class="product-entry">
+    <div class="product-entry product-green">
       <div class="product-image">
         <a href="https://amzn.to/4jLbmnm" target="_blank">
           <img src="CTG.jpg" alt="Changing the Game" class="glow-green">
@@ -327,8 +287,7 @@
       </div>
     </div>
 
-    <!-- Book 3 -->
-    <div class="product-entry">
+    <div class="product-entry product-blue">
       <div class="product-image">
         <a href="https://amzn.to/4kYZKy1" target="_blank">
           <img src="AIH.jpg" alt="AI Hustle & Flow" class="glow-blue">
@@ -354,3 +313,4 @@
 
 </body>
 </html>
+
