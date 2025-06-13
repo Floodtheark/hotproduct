@@ -254,10 +254,24 @@
   height: 100px;
   pointer-events: none;
   z-index: 0;
-  background: url('fire.gif') bottom center / cover no-repeat;
-  background-position-y: 40px;
+  background-image: url('fire.gif');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center bottom;
+  transform: translateY(40%); /* Adjust this to control how much fire shows */
+
+  /* 🔥 Blend into the header */
+  mix-blend-mode: screen; /* or try lighten/overlay/soft-light depending on vibe */
+  opacity: 0.8;
+
+  /* 🎞️ Slow animation if your gif is looping fast */
+  animation: slowFire 6s linear infinite;
 }
 
+@keyframes slowFire {
+  0%   { background-position: center bottom; }
+  100% { background-position: center bottom; }
+}
 
     .footer {
       text-align: center;
