@@ -246,7 +246,8 @@
     .buy-button-wrap a:hover + .flame-overlay {
       display: block;
     }
-.header-fire {
+
+    .header-fire {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -254,19 +255,19 @@
   height: 100px;
   pointer-events: none;
   z-index: 0;
-  background-image: url('fire.gif');
-  background-repeat: no-repeat;
+
+  background: url('fire.gif') center bottom no-repeat;
   background-size: 100% auto;
-  background-position: center bottom;
-  transform: translateY(40%); /* Adjust this to control how much fire shows */
 
-  /* 🔥 Blend into the header */
-  mix-blend-mode: screen; /* or try lighten/overlay/soft-light depending on vibe */
-  opacity: 0.8;
+  transform: translateY(50%);
 
-  /* 🎞️ Slow animation if your gif is looping fast */
-  animation: slowFire 6s linear infinite;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), transparent 80%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), transparent 80%);
 }
+
 
 @keyframes slowFire {
   0%   { background-position: center bottom; }
