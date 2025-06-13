@@ -231,23 +231,29 @@
       transform: scale(1.07);
       box-shadow: 0 0 20px 6px rgba(0, 200, 255, 0.75);
     }
-    .buy-top {
+.buy-top {
+  text-align: right;
+  margin-bottom: 0.5rem;
+}
+
+.buy-button-wrap {
   position: relative;
+  display: inline-block;
 }
 
 .flame-overlay {
   position: absolute;
-  top: -12px;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 140px;
+  width: 150px;
   height: auto;
   display: none;
   pointer-events: none;
   z-index: 2;
 }
 
-.buy-top a:hover + .flame-overlay {
+.buy-button-wrap a:hover + .flame-overlay {
   display: block;
 }
 
@@ -311,9 +317,10 @@
         <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank">
           <img src="TN.png" alt="Starter Kit" class="glow-orange">
         </a>
-      </div>
-      <div class="product-content">
-        <div class="buy-top">
+    </div>
+    <div class="product-content">
+      <div class="buy-top">
+        <div class="buy-button-wrap">
           <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank">Get the Starter Kit →</a>
           <img src="flame.gif" alt="flame" class="flame-overlay">
         </div>
