@@ -147,28 +147,52 @@
     }
 
     .product-entry .buy-top a {
-  display: inline-block;
-  padding: 0.7rem 1.6rem;
-  background: linear-gradient(145deg, #ff5500, #ff9900);
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-  border-radius: 10px;
-  box-shadow: inset 0 0 0 rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.3);
-  transition: all 0.25s ease;
-}
+      display: inline-block;
+      padding: 0.7rem 1.6rem;
+      background: linear-gradient(145deg, #ff5500, #ff9900);
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.25s ease;
+    }
 
-    .product-entry .buy-top a.amazon {
-      background: #232f3e;
+    .product-entry .buy-top a.red-btn {
+      background: linear-gradient(135deg, #d60000, #ff3333);
+      color: #fff;
+    }
+
+    .product-entry .buy-top a.green-btn {
+      background: linear-gradient(135deg, #00cc44, #66ff66);
+      color: #000;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.2);
+    }
+
+    .product-entry .buy-top a.blue-btn {
+      background: linear-gradient(135deg, #0077cc, #33ccff);
+      color: #fff;
     }
 
     .product-entry .buy-top a:hover {
       transform: scale(1.07);
-      box-shadow: 0 0 18px 6px rgba(255, 106, 0, 0.75);
+      box-shadow: 0 0 20px 6px rgba(255, 106, 0, 0.85);
+    }
+
+    .product-entry .buy-top a.red-btn:hover {
+      box-shadow: 0 0 20px 6px rgba(255, 30, 30, 0.75);
+    }
+
+    .product-entry .buy-top a.green-btn:hover {
+      box-shadow: 0 0 20px 6px rgba(57, 255, 20, 0.75);
+    }
+
+    .product-entry .buy-top a.blue-btn:hover {
+      box-shadow: 0 0 20px 6px rgba(0, 200, 255, 0.75);
     }
 
     .product-image img.glow-orange:hover {
@@ -278,7 +302,7 @@
       </div>
       <div class="product-content">
         <div class="buy-top">
-          <a href="https://amzn.to/4kCs6yi" class="amazon" target="_blank">Get on Amazon →</a>
+          <a href="https://amzn.to/4kCs6yi" class="amazon red-btn" target="_blank">Get on Amazon →</a>
         </div>
         <h2>GATEKEEPERS NOT WELCOME</h2>
         <p><em>Digitally Remastered</em> Book 1</p>
@@ -295,7 +319,7 @@
       </div>
       <div class="product-content">
         <div class="buy-top">
-          <a href="https://amzn.to/4jLbmnm" class="amazon" target="_blank">Get on Amazon →</a>
+          <a href="https://amzn.to/4jLbmnm" class="amazon green-btn" target="_blank">Get on Amazon →</a>
         </div>
         <h2>CHANGING THE GAME</h2>
         <p><em>Digitally Remastered</em> Book 2</p>
@@ -312,7 +336,7 @@
       </div>
       <div class="product-content">
         <div class="buy-top">
-          <a href="https://amzn.to/4kYZKy1" class="amazon" target="_blank">Get on Amazon →</a>
+          <a href="https://amzn.to/4kYZKy1" class="amazon blue-btn" target="_blank">Get on Amazon →</a>
         </div>
         <h2>AI HUSTLE & FLOW</h2>
         <p><em>Digitally Remastered</em> Book 3</p>
