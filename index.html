@@ -231,6 +231,25 @@
       transform: scale(1.07);
       box-shadow: 0 0 20px 6px rgba(0, 200, 255, 0.75);
     }
+    .buy-top {
+  position: relative;
+}
+
+.flame-overlay {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: auto;
+  display: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.buy-top a:hover + .flame-overlay {
+  display: block;
+}
 
     .footer {
       text-align: center;
@@ -296,6 +315,7 @@
       <div class="product-content">
         <div class="buy-top">
           <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank">Get the Starter Kit →</a>
+          <img src="flame.gif" alt="flame" class="flame-overlay">
         </div>
         <h2>Build Your Digital Empire: Affiliate Marketing Starter Kit</h2>
         <p><strong>Launch Your Affiliate Biz from Scratch — This Week</strong></p>
@@ -320,6 +340,7 @@
       <div class="product-content">
         <div class="buy-top">
           <a href="https://amzn.to/4kCs6yi" target="_blank">Get on Amazon →</a>
+          <img src="flame.gif" alt="flame" class="flame-overlay">
         </div>
         <h2>GATEKEEPERS NOT WELCOME</h2>
         <p><em>Digitally Remastered</em> Book 1</p>
@@ -337,6 +358,7 @@
       <div class="product-content">
         <div class="buy-top">
           <a href="https://amzn.to/4jLbmnm" target="_blank">Get on Amazon →</a>
+          <img src="flame.gif" alt="flame" class="flame-overlay">
         </div>
         <h2>CHANGING THE GAME</h2>
         <p><em>Digitally Remastered</em> Book 2</p>
@@ -354,6 +376,7 @@
       <div class="product-content">
         <div class="buy-top">
           <a href="https://amzn.to/4kYZKy1" target="_blank">Get on Amazon →</a>
+          <img src="flame.gif" alt="flame" class="flame-overlay">
         </div>
         <h2>AI HUSTLE & FLOW</h2>
         <p><em>Digitally Remastered</em> Book 3</p>
