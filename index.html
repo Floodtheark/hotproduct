@@ -85,22 +85,28 @@
       font-size: 1.75rem;
     }
 
-    .product-section {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
+.product-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  width: 100%;
+}
 
-    .product-entry {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      gap: 1.5rem;
-    }
+.product-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  gap: 1.5rem;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
 
     .starter-kit {
       background-color: #fff3e1;
