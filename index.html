@@ -299,40 +299,58 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
       color: #777;
     }
 
- @media (max-width: 600px) {
-      .flame {
-        font-size: 6.5rem;
-        transform: none;
-        margin: 0 auto;
-        padding: 0.5rem 0;
-      }
+@media (max-width: 600px) {
+  .flame {
+    font-size: 6.5rem;
+    transform: none;
+    margin: 0 auto;
+    padding: 0.5rem 0;
+  }
 
-      .subtext {
-        position: relative;
-        top: 0;
-        left: 0;
-        font-size: 1.5rem;
-        margin-top: -1rem;
-      }
+  .subtext {
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 1.5rem;
+    margin-top: -1rem;
+  }
 
-      .product-entry {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
+  .product-entry {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+  }
 
-      .buy-top {
-        text-align: center;
-      }
+  .buy-top {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .buy-button-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .flame-overlay {
+    position: relative;
+    z-index: 0;
+  }
 
   .product-image {
-  order: -1;
-  margin-bottom: 1rem;
+    order: -1;
+    margin-bottom: 1.5rem;
+    z-index: 2;
+    position: relative;
   }
-   .product-image img { 
-  width: 100%;
-  height: auto;
-  max-width: 160px;
+
+  .product-image img { 
+    width: 100%;
+    height: auto;
+    max-width: 160px;
+    display: block;
   }
 }
 
