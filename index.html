@@ -299,7 +299,7 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
       color: #777;
     }
 
-  @media (max-width: 600px) {
+@media (max-width: 600px) {
   .flame {
     font-size: 6.5rem;
     transform: none;
@@ -322,23 +322,41 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
     flex-direction: column;
     align-items: center;
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
   .product-image {
     order: 1;
     margin-bottom: 0.5rem;
+    z-index: 2;
   }
 
   .buy-top {
     order: 2;
     text-align: center;
     margin-top: 0.5rem;
+    z-index: 1;
   }
 
   .product-content {
     order: 3;
     width: 100%;
     padding: 0 1rem;
+  }
+
+  .buy-button-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .product-image img {
+    position: relative;
+    z-index: 2;
+  }
+
+  .flame-overlay {
+    z-index: 0;
   }
 }
   </style>
