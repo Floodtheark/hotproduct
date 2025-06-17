@@ -299,46 +299,35 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
       color: #777;
     }
 
-@media (max-width: 600px) {
-  .product-entry {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1.5rem 1rem;
-  }
+ @media (max-width: 600px) {
+      .flame {
+        font-size: 6.5rem;
+        transform: none;
+        margin: 0 auto;
+        padding: 0.5rem 0;
+      }
+
+      .subtext {
+        position: relative;
+        top: 0;
+        left: 0;
+        font-size: 1.5rem;
+        margin-top: -1rem;
+      }
+
+      .product-entry {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .buy-top {
+        text-align: center;
+      }
 
   .product-image {
-    width: 100%;
-    max-width: 160px;
-    margin-bottom: 1rem;
-    order: 1;
-  }
-
-  .product-content {
-    width: 100%;
-    padding: 0;
-    order: 2;
-    position: relative;
-  }
-
-  .buy-top {
-    width: 100%;
-    margin-bottom: 1rem;
-    text-align: center;
-    position: relative;
-  }
-
-  .buy-button-wrap {
-    display: inline-block;
-    width: auto;
-    position: relative;
-    z-index: 5;
-  }
-  
-  .product-image img {
-  width: 100%;
-  height: auto;
-  max-width: 160px;
+  order: -1;
+  margin-bottom: 1rem;
   }
 }
 
