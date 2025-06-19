@@ -48,6 +48,7 @@
   display: block; /* was inline-block — this fixes the clipping */
   padding: 0 2rem;
   overflow: visible;
+  height: auto; 
 }
 
   .flame {
@@ -66,7 +67,7 @@
   line-height: 0.85;
 }
 
-  .subtext {
+.subtext {
   display: block;
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
@@ -74,8 +75,8 @@
   color: #ffcc00;
   text-shadow: 1px 1px 2px #000;
   position: absolute;
-  top: 5.5rem;  /* moved it down a bit */
-  left: 55%;    /* nudged right slightly */
+  top: 4.5rem; /* pull it back up — less vertical gap */
+  left: 55%;    /* keep it nudged right */
   transform: rotate(-5deg);
 }
 
