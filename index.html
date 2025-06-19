@@ -42,13 +42,13 @@
       padding: 1rem;
     }
 
-    .logo-stack {
-      position: relative;
-      z-index: 1;
-      display: inline-block;
-      padding: 0 2rem;
-      overflow: visible;
-    }
+  .logo-stack {
+  position: relative;
+  z-index: 1;
+  display: block; /* was inline-block — this fixes the clipping */
+  padding: 0 2rem;
+  overflow: visible;
+}
 
   .flame {
   font-size: 11rem;
