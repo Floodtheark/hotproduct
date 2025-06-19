@@ -42,16 +42,17 @@
       padding: 1rem;
     }
 
-  .logo-stack {
+.logo-stack {
   position: relative;
   z-index: 1;
-  display: block; /* was inline-block — this fixes the clipping */
+  display: flex; /* instead of block or inline-block */
+  flex-direction: column;
+  align-items: flex-start;
   padding: 0 2rem;
   overflow: visible;
-  height: auto; 
 }
 
-  .flame {
+.flame {
   font-size: 11rem;
   font-family: 'Bangers', cursive;
   text-transform: uppercase;
@@ -59,7 +60,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
-  padding: 0 1rem 0.5rem 2rem; /* Fixed: no top padding */
+  padding: 0 1rem 0.5rem 2rem;
   font-weight: 900;
   white-space: nowrap;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35), 0 0 10px rgba(255, 140, 0, 0.4);
@@ -74,9 +75,8 @@
   font-weight: 900;
   color: #ffcc00;
   text-shadow: 1px 1px 2px #000;
-  position: absolute;
-  bottom: -1rem; /* key: position from bottom instead of top */
-  left: 55%;
+  margin-top: -2.5rem; /* THIS controls the overlap — adjust as you like */
+  margin-left: 55%; /* same horizontal nudge as before */
   transform: rotate(-5deg);
 }
 
