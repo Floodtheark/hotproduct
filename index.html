@@ -21,7 +21,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      height: 320px;
+      height: 350px;
       color: white;
       display: flex;
       flex-direction: column;
@@ -33,7 +33,6 @@
       box-shadow: inset 0 -10px 20px -10px rgba(0, 0, 0, 0.3);
       margin-bottom: 0;
       padding-bottom: 0;
-      overflow: visible;
     }
 
     .banner-content {
@@ -42,42 +41,40 @@
       padding: 1rem;
     }
 
-.logo-stack {
-  position: relative;
-  z-index: 1;
-  display: flex; /* instead of block or inline-block */
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0 2rem;
-  overflow: visible;
-}
+    .logo-stack {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      padding: 0 2rem;
+      overflow: visible;
+    }
 
-.flame {
-  font-size: 11rem;
-  font-family: 'Bangers', cursive;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #ff3c00, #ff6600, #ffaa00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
-  padding: 0 1rem 0.5rem 2rem;
-  font-weight: 900;
-  white-space: nowrap;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35), 0 0 10px rgba(255, 140, 0, 0.4);
-  transform: translateX(-25%);
-  line-height: 0.85;
-}
+    .flame {
+      font-size: 13rem;
+      font-family: 'Bangers', cursive;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ff3c00, #ff6600, #ffaa00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+      padding: 0.5rem 1rem 0.5rem 2rem;
+      font-weight: 900;
+      white-space: nowrap;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35), 0 0 10px rgba(255, 140, 0, 0.4);
+      transform: translateX(-25%);
+    }
 
-.subtext {
+  .subtext {
   display: block;
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
   font-weight: 900;
   color: #ffcc00;
   text-shadow: 1px 1px 2px #000;
-  margin-top: -2.5rem; /* THIS controls the overlap — adjust as you like */
-  margin-left: 55%; /* same horizontal nudge as before */
-  transform: rotate(-5deg);
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  transform: translateX(-15%) rotate(-5deg); /* tweak added here */
 }
 
     .highlight-section {
