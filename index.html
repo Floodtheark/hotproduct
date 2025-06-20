@@ -54,6 +54,33 @@
   transform: scale(1.07);
   box-shadow: 0 0 24px 8px rgba(255, 50, 50, 0.85);
 }
+    .matrix-button {
+  display: inline-block;
+  background: #000000;
+  padding: 0.7rem 1.6rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,1);
+  transition: all 0.25s ease;
+  color: #66ff66;
+  margin-bottom: 1rem;
+  position: relative; /* ADD THIS for positioning overlay */
+  overflow: hidden; /* ADD THIS to keep gif inside button */
+}
+.matrix-gif {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3; /* adjust for subtle or strong */
+  pointer-events: none; /* don’t block button click */
+  z-index: 0; /* behind the text */
+}
 
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -472,7 +499,6 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
   <a href="#books">eBooks</a>
   <a href="https://tally.so/r/w8VQNA" target="_blank" class="request-button">Request Project →</a>
 </div>
-
 <!-- Vending Machine Section -->
 <section class="highlight-section" id="vending-machine">
   <h2 style="text-align: center;">🛒 Vending Machine</h2>
@@ -492,7 +518,10 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem;">
     <!-- Free Hooks Pack -->
     <div style="text-align: center; max-width: 300px;">
-      <a href="https://tally.so/r/3yrvXX" target="_blank" class="matrix-button">Free Viral Hooks Pack →</a>
+      <a href="https://tally.so/r/3yrvXX" target="_blank" class="matrix-button">
+        Free Viral Hooks Pack →
+        <img src="matrix-overlay.gf" alt="Matrix Animation" class="matrix-gif">
+      </a>
       <div style="margin-top: 1rem;">
         <img src="slide1.png" alt="Viral Hooks Pack" class="matrix-image">
       </div>
@@ -500,7 +529,10 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 
     <!-- Custom Project Request -->
     <div style="text-align: center; max-width: 300px;">
-      <a href="https://tally.so/r/w8VQNA" target="_blank" class="matrix-button">Request A Custom Project →</a>
+      <a href="https://tally.so/r/w8VQNA" target="_blank" class="matrix-button">
+        Request A Custom Project →
+        <img src="matrix-overlay.gf" alt="Matrix Animation" class="matrix-gif">
+      </a>
       <div style="margin-top: 1rem;">
         <img src="slide2.png" alt="Request Custom Project" class="matrix-image">
       </div>
@@ -508,7 +540,10 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 
     <!-- FREE BATTLE TESTED CTAs Pack -->
     <div style="text-align: center; max-width: 300px;">
-      <a href="https://YOUR_CTAS_PACK_LINK_HERE" target="_blank" class="matrix-button">FREE BATTLE TESTED CTAs PACK →</a>
+      <a href="https://YOUR_CTAS_PACK_LINK_HERE" target="_blank" class="matrix-button">
+        FREE BATTLE TESTED CTAs PACK →
+        <img src="matrix-overlay.gf" alt="Matrix Animation" class="matrix-gif">
+      </a>
       <div style="margin-top: 1rem;">
         <img src="slide3.png" alt="CTAs Pack" class="matrix-image">
       </div>
@@ -516,7 +551,10 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 
     <!-- Digital Machine Kit (Coming Soon!) -->
     <div style="text-align: center; max-width: 300px;">
-      <a href="#" target="_blank" class="matrix-button">DIGITAL MACHINE KIT (Coming Soon!) →</a>
+      <a href="#" target="_blank" class="matrix-button">
+        DIGITAL MACHINE KIT (Coming Soon!) →
+        <img src="matrix-overlay.gf" alt="Matrix Animation" class="matrix-gif">
+      </a>
       <div style="margin-top: 1rem;">
         <img src="slide4.png" alt="DVM Kit Coming Soon" class="matrix-image">
       </div>
@@ -524,7 +562,10 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 
     <!-- 100 Comment Hooks -->
     <div style="text-align: center; max-width: 300px;">
-      <a href="https://YOUR_100_COMMENT_HOOKS_LINK" target="_blank" class="matrix-button">100 Comment Hooks → $4.99</a>
+      <a href="https://YOUR_100_COMMENT_HOOKS_LINK" target="_blank" class="matrix-button">
+        100 Comment Hooks → $4.99
+        <img src="matrix-overlay.gf" alt="Matrix Animation" class="matrix-gif">
+      </a>
       <div style="margin-top: 1rem;">
         <img src="slide4.png" alt="100 Comment Hooks" class="matrix-image">
       </div>
@@ -532,7 +573,10 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 
     <!-- 100 Post Angles & CTAs -->
     <div style="text-align: center; max-width: 300px;">
-      <a href="https://YOUR_100_POST_ANGLES_LINK" target="_blank" class="matrix-button">100 Post Angles & CTAs → $4.99</a>
+      <a href="https://YOUR_100_POST_ANGLES_LINK" target="_blank" class="matrix-button">
+        100 Post Angles & CTAs → $4.99
+        <img src="matrix-overlay.gf" alt="Matrix Animation" class="matrix-gif">
+      </a>
       <div style="margin-top: 1rem;">
         <img src="slide4.png" alt="100 Post Angles & CTAs" class="matrix-image">
       </div>
