@@ -8,6 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
   <style>
+    html {
+  scroll-behavior: smooth;
+}
+.section-nav a:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 24px 8px rgba(255, 110, 0, 0.85); /* matches AMSK glow */
+}
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to top, #000000 0%, #1a1a1a 10%, #4f6f50 25%, #55cc88 38%, #66ff99 50%, #e8eee8 70%, #f5f5f5 85%, #f0fff0 100%);
@@ -416,10 +424,9 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
   </div>
   <div class="header-fire"></div>
 </header>
-<div class="flame-border"></div>
 
 <!-- 🔥 Section Nav Buttons -->
-<div class="section-nav" style="background: url('charred-wood.png') repeat-x center -4px; background-size: auto 100%; padding: 1rem 0; text-align: center; box-shadow: inset 0 -4px 10px rgba(0,0,0,0.4), 0 10px 20px rgba(0,0,0,0.2);">
+<div class="section-nav flame-border">
   <a href="#free-packs" style="display: inline-block; margin: 0 0.5rem; padding: 0.7rem 1.6rem; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px; color: #fff; background: linear-gradient(145deg, #ff5500, #ff9900); box-shadow: inset 0 0 0 rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.3); transition: all 0.25s ease; text-decoration: none;">Free Packs</a>
   <a href="#vending-machine" style="display: inline-block; margin: 0 0.5rem; padding: 0.7rem 1.6rem; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px; color: #fff; background: linear-gradient(145deg, #ff5500, #ff9900); box-shadow: inset 0 0 0 rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.3); transition: all 0.25s ease; text-decoration: none;">Vending Machine</a>
   <a href="#starter-kit" style="display: inline-block; margin: 0 0.5rem; padding: 0.7rem 1.6rem; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; border-radius: 10px; color: #fff; background: linear-gradient(145deg, #ff5500, #ff9900); box-shadow: inset 0 0 0 rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.3); transition: all 0.25s ease; text-decoration: none;">Starter Kit</a>
