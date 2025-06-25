@@ -484,23 +484,31 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 
   <!-- Matrix Code Overlay (above dark, below text) -->
 <div class="matrix-overlay">
-  <script>
+<script>
   const matrixOverlay = document.querySelector('.matrix-overlay');
-  const streamCount = 40;
+  const streamCount = 50; // Increase for even denser rain
 
   for (let i = 0; i < streamCount; i++) {
     const stream = document.createElement('div');
     stream.classList.add('matrix-char');
 
-    const left = Math.floor(Math.random() * 96) + 2;
+    // Random left position (1%–98%)
+    const left = Math.floor(Math.random() * 97) + 1;
     stream.style.left = `${left}%`;
 
-    const duration = (Math.random() * 1.5 + 2.5).toFixed(2);
+    // Random animation duration
+    const duration = (Math.random() * 2 + 2).toFixed(2);
     stream.style.animationDuration = `${duration}s`;
 
+    // 🆕 Random animation delay
+    const delay = (Math.random() * 3).toFixed(2);
+    stream.style.animationDelay = `${delay}s`;
+
+    // 🆕 Random character stream length (6–14 chars)
     const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
     let rain = '';
-    for (let j = 0; j < 12; j++) {
+    const length = Math.floor(Math.random() * 9) + 6;
+    for (let j = 0; j < length; j++) {
       rain += chars.charAt(Math.floor(Math.random() * chars.length));
     }
 
