@@ -45,7 +45,7 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to top, #000000 0%, #1a1a1a 10%, #4f6f50 25%, #55cc88 38%, #66ff99 50%, #e8eee8 70%, #f5f5f5 85%, #f0fff0 100%);
+  background: linear-gradient(to bottom, #f0fff0 0%, #e8eee8 8%, #66ff99 15%, #55cc88 25%, #4f6f50 50%, #1a1a1a 75%, #000000 100%);
   color: #111;
   margin: 0;
   padding: 0;
@@ -432,8 +432,8 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 </head>
 <body>
 
-<header>
-  <img src="matrix-banner.jpg" alt="Banner" style="width: 100%; height: auto; display: block;">
+<header style="width: 100%; height: 300px; overflow: hidden; position: relative;">
+  <img src="matrix-banner.jpg" alt="Banner" style="width: 100%; height: 100%; object-fit: cover; display: block;">
 </header>
 
 <!-- 🔥 Section Nav Buttons -->
