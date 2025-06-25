@@ -433,13 +433,18 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 <body>
 
 <header style="width: 100%; height: 300px; overflow: hidden; position: relative;">
+  <!-- Banner Image -->
   <img src="matrix-banner.jpg" alt="Banner" style="width: 100%; height: 100%; object-fit: cover; display: block;">
 
-  <!-- Banner Tagline (lower right corner) -->
+  <!-- Dark overlay to soften glow -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1;"></div>
+
+  <!-- Banner Text -->
   <div style="
     position: absolute; 
     bottom: 20px; 
     right: 20px; 
+    z-index: 2;
     text-align: right; 
     font-family: 'Orbitron', sans-serif; 
     font-size: 1.1rem; 
