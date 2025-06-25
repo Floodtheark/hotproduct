@@ -11,6 +11,32 @@
     html {
   scroll-behavior: smooth;
 }
+    @keyframes matrix-fall {
+      0% { transform: translateY(-100%); opacity: 0.1; }
+      100% { transform: translateY(100%); opacity: 0.4; }
+    }
+
+    .matrix-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      color: #00ff66;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .matrix-char {
+      position: absolute;
+      animation: matrix-fall linear infinite;
+      white-space: nowrap;
+      opacity: 0.25;
+    }
+    
 .section-nav {
   display: flex;
   justify-content: center;
@@ -436,7 +462,7 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
   <!-- Banner Image -->
   <img src="matrix-banner.jpg" alt="Banner" style="width: 100%; height: 100%; object-fit: cover; display: block;">
 
-  <!-- Subtle dark overlay with blend mode -->
+  <!-- Dark Overlay (stays under everything else) -->
   <div style="
     position: absolute; 
     top: 0; 
@@ -448,23 +474,35 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
     z-index: 1;
   "></div>
 
-  <!-- Banner Text -->
-  <div style="
-  position: absolute; 
-  bottom: 20px; 
-  right: 20px; 
-  z-index: 2;
-  text-align: right; 
-  font-family: 'Orbitron', sans-serif; 
-  font-size: 1.1rem; 
-  font-style: italic;
-  color: #66ff99; 
-  text-shadow: 0 0 3px rgba(0,255,100,0.4);
- ">
-  AI Powered Productivity | Automation Stacks | Digital Mastery
- </div>
-</header>
+  <!-- Matrix Code Overlay (above dark, below text) -->
+  <div class="matrix-overlay">
+    <div class="matrix-char" style="left: 5%; animation-duration: 6s;">1010101100101010</div>
+    <div class="matrix-char" style="left: 15%; animation-duration: 7s;">0110110001011011</div>
+    <div class="matrix-char" style="left: 25%; animation-duration: 5s;">0011001100110011</div>
+    <div class="matrix-char" style="left: 35%; animation-duration: 8s;">1101010100100101</div>
+    <div class="matrix-char" style="left: 45%; animation-duration: 6s;">0101010101111001</div>
+    <div class="matrix-char" style="left: 55%; animation-duration: 7s;">1110001110001110</div>
+    <div class="matrix-char" style="left: 65%; animation-duration: 5s;">0010110011001101</div>
+    <div class="matrix-char" style="left: 75%; animation-duration: 9s;">1001001001001001</div>
+  </div>
 
+  <!-- Banner Text (Top Layer) -->
+  <div style="
+    position: absolute; 
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 2;
+    text-align: right; 
+    font-family: 'Orbitron', sans-serif; 
+    font-size: 1.1rem; 
+    font-style: italic;
+    color: #66ff99; 
+    text-shadow: 0 0 3px rgba(0,255,100,0.4);
+  ">
+    AI Powered Productivity | Automation Stacks | Digital Mastery
+  </div>
+</header>
+  
 <!-- 🔥 Section Nav Buttons -->
 <div class="section-nav">
   <a href="#free-packs" class="matrix-button">
