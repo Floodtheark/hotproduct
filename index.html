@@ -35,14 +35,14 @@
 }
 
 .matrix-char {
-  position: absolute;
   font-family: 'Orbitron', monospace;
   font-size: 18px;
   color: #00ff66;
-  white-space: nowrap;
-  writing-mode: vertical-rl;
-  animation: matrix-fall linear infinite;
   opacity: 0.25;
+  animation: matrix-fall linear infinite;
+  writing-mode: vertical-rl;
+  letter-spacing: 1px;
+  text-shadow: 0 0 3px #00ff66, 0 0 5px rgba(0, 255, 102, 0.5);
 }
     
 .section-nav {
@@ -482,29 +482,27 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
     z-index: 1;
   "></div>
 
-  <!-- Matrix Code Overlay (above dark, below text) -->
-<div class="matrix-overlay">
+<!-- Matrix Overlay Layer -->
+<div class="matrix-overlay"></div>
+
+<!-- Matrix Rain Generator -->
 <script>
   const matrixOverlay = document.querySelector('.matrix-overlay');
-  const streamCount = 50; // Increase for even denser rain
+  const streamCount = 50;
 
   for (let i = 0; i < streamCount; i++) {
     const stream = document.createElement('div');
     stream.classList.add('matrix-char');
 
-    // Random left position (1%–98%)
     const left = Math.floor(Math.random() * 97) + 1;
     stream.style.left = `${left}%`;
 
-    // Random animation duration
     const duration = (Math.random() * 2 + 2).toFixed(2);
     stream.style.animationDuration = `${duration}s`;
 
-    // 🆕 Random animation delay
     const delay = (Math.random() * 3).toFixed(2);
     stream.style.animationDelay = `${delay}s`;
 
-    // 🆕 Random character stream length (6–14 chars)
     const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
     let rain = '';
     const length = Math.floor(Math.random() * 9) + 6;
@@ -516,7 +514,27 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
     matrixOverlay.appendChild(stream);
   }
 </script>
-  
+
+<!-- Live Glyph Mutation -->
+<script>
+  setInterval(() => {
+    const streams = document.querySelectorAll('.matrix-char');
+    const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
+
+    streams.forEach(stream => {
+      let newText = '';
+      for (let i = 0; i < stream.innerText.length; i++) {
+        if (Math.random() > 0.92) {
+          newText += chars.charAt(Math.floor(Math.random() * chars.length));
+        } else {
+          newText += stream.innerText[i];
+        }
+      }
+      stream.innerText = newText;
+    });
+  }, 120);
+</script>
+
 </div>
 
   <!-- Banner Text (Top Layer) -->
