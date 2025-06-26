@@ -862,10 +862,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let index = 0;
   setInterval(() => {
-    if (document.querySelectorAll('.matrix-char').length < 75) {
-      const randomIndex = Math.floor(Math.random() * streamCount);
-     spawnCharGroup(randomIndex);
-  }, 80);
+  if (document.querySelectorAll('.matrix-char').length < 75) {
+    const randomIndex = Math.floor(Math.random() * streamCount);
+    spawnCharGroup(randomIndex);
+  }
+}, 80);
 
   // 🔦 Add background flicker overlay
   const flickerOverlay = document.createElement('div');
