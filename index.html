@@ -93,13 +93,33 @@ body.glitch-mode .matrix-char {
   opacity: 0.85;
 }
     
- .glitch-red {
+@keyframes glitch-red-pulse {
+  0%, 100% { 
+    text-shadow:
+      0 0 6px #ff4d4d,
+      0 0 12px #ff0000,
+      0 0 24px #ff1e1e;
+    transform: scale(1.05) skewX(2deg);
+    opacity: 1;
+  }
+  50% {
+    text-shadow:
+      0 0 12px #ff0000,
+      0 0 24px #ff0000,
+      0 0 36px rgba(255, 0, 0, 0.8);
+    transform: scale(1.15) skewX(-3deg);
+    opacity: 0.6;
+  }
+}
+
+.glitch-red {
   color: #ff1e1e !important;
   text-shadow:
-    0 0 3px #ff4d4d,
     0 0 6px #ff4d4d,
-    0 0 12px rgba(255, 30, 30, 0.8);
+    0 0 12px #ff0000,
+    0 0 24px rgba(255, 30, 30, 0.9);
   transform: scale(1.1) skewX(3deg);
+  animation: glitch-red-pulse 0.5s infinite;
 }
     
 .section-nav {
@@ -789,9 +809,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const stream = document.createElement('div');
     stream.classList.add('matrix-char');
 
-    const left = i * streamSpacing + Math.random(); // Slight jitter
+    const left = i * streamSpacing + (Math.random() * 0.5); // small jitter only
     stream.style.left = `${left}%`;
-    stream.style.top = `${Math.random() * 100}vh`;
+    stream.style.top = `-10vh`;
     stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
 
     const depth = Math.floor(Math.random() * 3);
