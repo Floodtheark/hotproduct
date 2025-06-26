@@ -802,7 +802,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const matrixOverlay = document.querySelector('.matrix-overlay');
   const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
   const phrases = ['WAKE UP', 'NO ESCAPE', 'FOLLOW THE WHITE RABBIT', 'SYSTEM FAILURE'];
-  const streamCount = 50;
+  const streamCount = 75;
   const streamSpacing = 100 / streamCount;
 
   function spawnCharGroup(i) {
@@ -862,11 +862,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let index = 0;
   setInterval(() => {
-    if (document.querySelectorAll('.matrix-char').length < 60) {
-      spawnCharGroup(index);
-      index = (index + 1) % streamCount;
-    }
-  }, 100);
+    if (document.querySelectorAll('.matrix-char').length < 75) {
+      const randomIndex = Math.floor(Math.random() * streamCount);
+     spawnCharGroup(randomIndex);
+  }, 80);
 
   // 🔦 Add background flicker overlay
   const flickerOverlay = document.createElement('div');
