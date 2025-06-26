@@ -17,9 +17,12 @@
     transform: translateY(-100%);
     opacity: 0;
   }
+  50% {
+    opacity: 1;
+  }
   100% {
     transform: translateY(100vh);
-    opacity: 1;
+    opacity: 0;
   }
 }
 
@@ -40,16 +43,30 @@
 .matrix-char {
   position: absolute;
   top: 0;
+  width: 1.2rem;
+  white-space: nowrap;
   font-family: 'Orbitron', monospace;
   font-size: 18px;
   color: #00ff66;
-  opacity: 0.25;
   animation: matrix-fall linear infinite;
   writing-mode: vertical-rl;
   letter-spacing: 1px;
-  text-shadow: 0 0 3px #00ff66, 0 0 5px rgba(0, 255, 102, 0.5);
-  width: 1.2rem; /* Controls column spacing */
-  white-space: nowrap;
+
+  text-shadow:
+    0 0 4px #00ff66,
+    0 0 10px rgba(0, 255, 102, 0.7),
+    0 0 14px rgba(0, 255, 102, 0.4);
+
+  filter: blur(0.4px) brightness(1.2);
+  opacity: 0.25;
+}
+    .head-char {
+  color: #ccffcc;
+  font-weight: bold;
+  text-shadow:
+    0 0 6px #b6ffb6,
+    0 0 12px #b6ffb6;
+  opacity: 0.9;
 }
     
 .section-nav {
@@ -740,33 +757,41 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
       stream.style.animationDuration = `${duration}s`;
       const delay = (Math.random() * 3).toFixed(2);
       stream.style.animationDelay = `${delay}s`;
+
       const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
-      let rain = '';
       const length = Math.floor(Math.random() * 9) + 6;
-      for (let j = 0; j < length; j++) {
+
+      let rain = `<span class="head-char">${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
+      for (let j = 1; j < length; j++) {
         rain += chars.charAt(Math.floor(Math.random() * chars.length));
       }
-      stream.innerText = rain;
+
+      stream.innerHTML = rain;
       matrixOverlay.appendChild(stream);
     }
   });
 </script>
+
 
 <!-- Matrix mutation script stays the same -->
 <script>
   setInterval(() => {
     const streams = document.querySelectorAll('.matrix-char');
     const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
+    
     streams.forEach(stream => {
-      let newText = '';
-      for (let i = 0; i < stream.innerText.length; i++) {
+      const original = stream.innerText;
+      let newText = `<span class="head-char">${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
+
+      for (let i = 1; i < original.length; i++) {
         if (Math.random() > 0.92) {
           newText += chars.charAt(Math.floor(Math.random() * chars.length));
         } else {
-          newText += stream.innerText[i];
+          newText += original[i];
         }
       }
-      stream.innerText = newText;
+
+      stream.innerHTML = newText;
     });
   }, 120);
 </script>
