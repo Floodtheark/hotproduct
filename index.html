@@ -11,16 +11,6 @@
     html {
   scroll-behavior: smooth;
 }
-    @keyframes drop-down {
-  0% {
-    transform: translateY(-100vh);
-    opacity: 0.2;
-  }
-  100% {
-    transform: translateY(100vh);
-    opacity: 0.4;
-  }
-}
 
     @keyframes screen-shake {
   0% { transform: translate(0, 0); }
@@ -865,13 +855,7 @@ document.addEventListener("DOMContentLoaded", () => {
     stream.style.opacity = [0.15, 0.25, 0.4][depth];
 
     const duration = 1.5 + Math.random() * 1.5;
-    const doVerticalDrop = Math.random() < 0.05;
-
-    if (doVerticalDrop) {
-      stream.style.animation = `drop-down ${duration * 4}s linear forwards`;
-    } else {
-      stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
-    }
+    stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
 
     const length = Math.floor(Math.random() * 14) + 6;
     const glyphs = [];
