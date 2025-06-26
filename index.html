@@ -809,9 +809,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const stream = document.createElement('div');
     stream.classList.add('matrix-char');
 
-    const left = i * streamSpacing + (Math.random() * 0.5); // small jitter only
+    const left = i * streamSpacing + (Math.random() * 0.5);
     stream.style.left = `${left}%`;
-    stream.style.top = `-10vh`;
+    const verticalJitter = Math.random() * 90;
+    stream.style.top = `${verticalJitter}vh`;
     stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
 
     const depth = Math.floor(Math.random() * 3);
@@ -846,7 +847,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const mutator = setInterval(() => {
       const spans = stream.querySelectorAll('span');
-      spans.forEach((span, i) => {
+      spans.forEach((span) => {
         if (Math.random() > 0.7) {
           span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
         }
@@ -861,9 +862,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let index = 0;
   setInterval(() => {
-    spawnCharGroup(index);
-    index = (index + 1) % streamCount;
-  }, 75);
+    if (document.querySelectorAll('.matrix-char').length < 60) {
+      spawnCharGroup(index);
+      index = (index + 1) % streamCount;
+    }
+  }, 100);
+
+  // 🔦 Add background flicker overlay
+  const flickerOverlay = document.createElement('div');
+  flickerOverlay.style.position = 'fixed';
+  flickerOverlay.style.top = 0;
+  flickerOverlay.style.left = 0;
+  flickerOverlay.style.width = '100%';
+  flickerOverlay.style.height = '100%';
+  flickerOverlay.style.background = 'white';
+  flickerOverlay.style.opacity = '0';
+  flickerOverlay.style.pointerEvents = 'none';
+  flickerOverlay.style.zIndex = '1';
+  flickerOverlay.style.transition = 'opacity 0.1s ease';
+  document.body.appendChild(flickerOverlay);
+
+  setInterval(() => {
+    if (Math.random() < 0.08) {
+      flickerOverlay.style.opacity = Math.random() < 0.5 ? '0.02' : '0.05';
+      setTimeout(() => {
+        flickerOverlay.style.opacity = '0';
+      }, 60 + Math.random() * 100);
+    }
+  }, 200);
+});
+
+// 🟥 Glitch trigger with 5% chance to "go nuclear"
+function triggerGlitch(duration = 4000) {
+  document.body.classList.add('glitch-mode');
+
+  const spans = document.querySelectorAll('.matrix-char span');
+  const goNuclear = Math.random() < 0.05;
+
+  spans.forEach(span => {
+    if (goNuclear || Math.random() < 0.12) {
+      span.classList.add('glitch-red');
+    }
+  });
+
+  setTimeout(() => {
+    document.body.classList.remove('glitch-mode');
+    spans.forEach(span => span.classList.remove('glitch-red'));
+  }, duration);
+}
+
+// Triggers
+document.addEventListener('click', () => triggerGlitch());
+document.addEventListener('keydown', (e) => {
+  if (e.key.toLowerCase() === 'g') triggerGlitch();
 });
 
 // Cursor warp
@@ -876,28 +927,6 @@ document.addEventListener('mousemove', (e) => {
     const dist = Math.sqrt(dx * dx + dy * dy);
     stream.style.transform = dist < 120 ? `translate(${dx * 0.05}px, ${dy * 0.05}px)` : '';
   });
-});
-
-// Glitch trigger + red effect
-function triggerGlitch(duration = 4000) {
-  document.body.classList.add('glitch-mode');
-
-  const spans = document.querySelectorAll('.matrix-char span');
-  spans.forEach(span => {
-    if (Math.random() < 0.12) {
-      span.classList.add('glitch-red');
-    }
-  });
-
-  setTimeout(() => {
-    document.body.classList.remove('glitch-mode');
-    spans.forEach(span => span.classList.remove('glitch-red'));
-  }, duration);
-}
-
-document.addEventListener('click', () => triggerGlitch());
-document.addEventListener('keydown', (e) => {
-  if (e.key.toLowerCase() === 'g') triggerGlitch();
 });
 </script>
 
