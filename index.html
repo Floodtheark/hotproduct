@@ -951,7 +951,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // Glitch with Shake
 function triggerGlitch(duration = 4000) {
   document.body.classList.add('glitch-mode');
-  triggerShake();
 
   const spans = document.querySelectorAll('.matrix-char span');
   const goNuclear = Math.random() < 0.05;
