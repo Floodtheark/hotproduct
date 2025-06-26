@@ -11,21 +11,34 @@
     html {
   scroll-behavior: smooth;
 }
-    @keyframes matrix-flicker {
+    
+@keyframes matrix-flicker {
   0%, 100% { opacity: 0; }
-  10% { opacity: 0.1; }
-  25% { opacity: 0.3; }
-  50% { opacity: 0.6; }
+  10% { opacity: 0.3; }
+  40% { opacity: 0.6; }
   70% { opacity: 0.4; }
   90% { opacity: 0.2; }
 }
-    
-    @keyframes matrix-wave {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(1.5px); }
-  50% { transform: translateX(0); }
-  75% { transform: translateX(-1.5px); }
-  100% { transform: translateX(0); }
+
+@keyframes matrix-wave {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+@keyframes matrix-glitch {
+  0% { transform: translateX(0) skew(0deg); opacity: 0.2; }
+  20% { transform: translateX(-3px) skew(-5deg); opacity: 0.4; }
+  40% { transform: translateX(3px) skew(5deg); opacity: 0.6; }
+  60% { transform: translateX(-2px) skew(-4deg); opacity: 0.3; }
+  80% { transform: translateX(2px) skew(2deg); opacity: 0.5; }
+  100% { transform: translateX(0) skew(0deg); opacity: 0.2; }
+}
+
+body.glitch-mode .matrix-char {
+  animation-name: matrix-flicker, matrix-wave, matrix-glitch;
+  animation-duration: 4s, 3s, 0.3s;
+  animation-iteration-count: 1, infinite, infinite;
+  animation-timing-function: ease-in-out, ease-in-out, steps(2, jump-none);
 }
 
 .matrix-overlay {
@@ -50,7 +63,6 @@
   font-family: 'Orbitron', monospace;
   font-size: 18px;
   color: #00ff66;
-  animation: matrix-fall linear infinite;
   writing-mode: vertical-rl;
   letter-spacing: 1px;
 
@@ -70,21 +82,6 @@
     0 0 5px #99ff99,
     0 0 10px #99ff99;
   opacity: 0.85;
-}
-    body.glitch-mode .matrix-char {
-  animation-name: matrix-fall, matrix-wave, matrix-glitch;
-  animation-duration: 2.2s, 5s, 0.3s;
-  animation-timing-function: linear, ease-in-out, steps(2, jump-none);
-  animation-iteration-count: infinite, infinite, infinite;
-}
-
-@keyframes matrix-glitch {
-  0% { transform: translateX(0) skew(0deg); opacity: 0.2; }
-  20% { transform: translateX(-3px) skew(-5deg); opacity: 0.4; }
-  40% { transform: translateX(3px) skew(5deg); opacity: 0.6; }
-  60% { transform: translateX(-2px) skew(-4deg); opacity: 0.3; }
-  80% { transform: translateX(2px) skew(2deg); opacity: 0.5; }
-  100% { transform: translateX(0) skew(0deg); opacity: 0.2; }
 }
     
 .section-nav {
@@ -765,68 +762,63 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const matrixOverlay = document.querySelector('.matrix-overlay');
-    const streamCount = 50;
+    const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
 
-    for (let i = 0; i < streamCount; i++) {
-      const stream = document.createElement('div');
-      stream.classList.add('matrix-char');
+    function spawnChar() {
+      const char = document.createElement('span');
+      char.classList.add('matrix-char');
 
-      // Horizontal position (even spacing)
-      const left = Math.floor(i * (100 / streamCount));
-      stream.style.left = `${left}%`;
+      // Random character and font size
+      const letter = chars.charAt(Math.floor(Math.random() * chars.length));
+      char.innerHTML = `<span class="head-char">${letter}</span>`;
 
-      // Vertical offset (still randomized but not animated down)
-      stream.style.top = `${Math.floor(Math.random() * 100)}vh`;
+      // Random position
+      char.style.left = `${Math.random() * 100}vw`;
+      char.style.top = `${Math.random() * 100}vh`;
+      char.style.fontSize = `${Math.floor(Math.random() * 10) + 12}px`;
 
-      // Font size (14–20px)
-      stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
+      // Animation setup
+      char.style.animationName = 'matrix-flicker, matrix-wave';
+      char.style.animationDuration = '4s, 3s';
+      char.style.animationTimingFunction = 'ease-in-out, ease-in-out';
+      char.style.animationIterationCount = '1, infinite';
 
-      // Layered depth: opacity, z-index
-      const depth = Math.floor(Math.random() * 3); // 0–2
-      stream.style.zIndex = `${depth}`;
-      stream.style.opacity = [0.15, 0.25, 0.4][depth];
+      // Opacity and blur
+      char.style.opacity = Math.random() * 0.4 + 0.2;
+      char.style.filter = 'brightness(0.6) blur(0.5px)';
 
-      // Use flicker + wave (no matrix-fall)
-      stream.style.animationName = 'matrix-flicker, matrix-wave';
-      stream.style.animationDuration = '6s, 4s';
-      stream.style.animationTimingFunction = 'ease-in-out, ease-in-out';
-      stream.style.animationIterationCount = 'infinite, infinite';
+      matrixOverlay.appendChild(char);
 
-      const delay = (Math.random() * 3).toFixed(2);
-      stream.style.animationDelay = `${delay}s, ${delay / 2}s`;
+      // Mutate the character randomly during its life
+      const mutate = setInterval(() => {
+        if (!document.body.contains(char)) {
+          clearInterval(mutate);
+          return;
+        }
+        const newChar = chars.charAt(Math.floor(Math.random() * chars.length));
+        char.innerHTML = `<span class="head-char">${newChar}</span>`;
+      }, 100 + Math.random() * 300);
 
-      // Generate character stream
-      const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
-      const length = Math.floor(Math.random() * 20) + 4;
-
-      let rain = `<span class="head-char">${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
-      for (let j = 1; j < length; j++) {
-        rain += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-
-      stream.innerHTML = rain;
-      matrixOverlay.appendChild(stream);
+      // Remove after fade
+      setTimeout(() => {
+        char.remove();
+        clearInterval(mutate);
+      }, 4000);
     }
+
+    // Spawn multiple initially
+    for (let i = 0; i < 60; i++) {
+      spawnChar();
+    }
+
+    // Continue spawning randomly
+    setInterval(() => {
+      spawnChar();
+      if (Math.random() > 0.7) spawnChar(); // sometimes spawn extra
+    }, 200);
   });
 
-  // Cursor-hover reactive warping
-  document.addEventListener('mousemove', (e) => {
-    const streams = document.querySelectorAll('.matrix-char');
-    streams.forEach(stream => {
-      const rect = stream.getBoundingClientRect();
-      const dx = rect.left + rect.width / 2 - e.clientX;
-      const dy = rect.top + rect.height / 2 - e.clientY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-
-      if (dist < 120) {
-        stream.style.transform = `translate(${dx * 0.05}px, ${dy * 0.05}px)`;
-      } else {
-        stream.style.transform = '';
-      }
-    });
-  });
-
-  // 💥 Glitch Mode Trigger (click or "G" key)
+  // Glitch trigger stays the same
   function triggerGlitch(duration = 4000) {
     document.body.classList.add('glitch-mode');
     setTimeout(() => {
@@ -834,14 +826,9 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
     }, duration);
   }
 
-  document.addEventListener('click', () => {
-    triggerGlitch();
-  });
-
+  document.addEventListener('click', () => triggerGlitch());
   document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'g') {
-      triggerGlitch();
-    }
+    if (e.key.toLowerCase() === 'g') triggerGlitch();
   });
 </script>
 
