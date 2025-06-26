@@ -11,6 +11,29 @@
     html {
   scroll-behavior: smooth;
 }
+    
+    @keyframes green-glow-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 4px #00ff66,
+      0 0 8px #00ff66,
+      0 0 12px rgba(0, 255, 102, 0.8);
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    text-shadow:
+      0 0 8px #00ff66,
+      0 0 14px #00ff66,
+      0 0 20px rgba(0, 255, 102, 1);
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.green-glow {
+  animation: green-glow-pulse 1s ease-in-out infinite;
+}
 
     @keyframes screen-shake {
   0% { transform: translate(0, 0); }
@@ -883,14 +906,22 @@ function spawnCharGroup() {
   glyphs.forEach(span => stream.appendChild(span));
   matrixOverlay.appendChild(stream);
 
-  const mutator = setInterval(() => {
-    const spans = stream.querySelectorAll('span');
-    spans.forEach((span) => {
-      if (Math.random() > 0.7) {
-        span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-    });
-  }, 350 + Math.random() * 300);
+ const mutator = setInterval(() => {
+  const spans = stream.querySelectorAll('span');
+  spans.forEach((span) => {
+    if (Math.random() > 0.7) {
+      span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    // 🌟 Randomly trigger green glow
+    if (Math.random() < 0.03) { // ~3% chance per frame
+      span.classList.add('green-glow');
+      setTimeout(() => {
+        span.classList.remove('green-glow');
+      }, 1000); // duration of one glow pulse
+    }
+  });
+}, 350 + Math.random() * 300);
 
   setTimeout(() => {
     stream.remove();
