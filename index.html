@@ -827,74 +827,77 @@ document.addEventListener("DOMContentLoaded", () => {
     }, cellLifetime);
   }
 
-  function spawnCharGroup() {
-    let attempts = 0;
-    let row, col;
+function spawnCharGroup() {
+  let attempts = 0;
+  let row, col;
 
-    // Try up to 10 times to find an unoccupied grid cell
-    while (attempts < 10) {
-      row = Math.floor(Math.random() * gridSize);
-      col = Math.floor(Math.random() * gridSize);
-      if (!grid[row][col]) break;
-      attempts++;
+  while (attempts < 10) {
+    row = Math.floor(Math.random() * gridSize);
+    col = Math.floor(Math.random() * gridSize);
+    if (!grid[row][col]) break;
+    attempts++;
+  }
+  if (grid[row][col]) return;
+
+  const cellSize = 100 / gridSize;
+  const padding = cellSize * 0.25;
+
+  const left = col * cellSize + padding + Math.random() * (cellSize - 2 * padding);
+  const top = row * cellSize + padding + Math.random() * (cellSize - 2 * padding);
+  markGridCell(row, col);
+
+  const stream = document.createElement('div');
+  stream.classList.add('matrix-char');
+  stream.style.left = `${left}%`;
+  stream.style.top = `${top}%`; // ← fixed from vh to %
+
+  stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
+
+  const depth = Math.floor(Math.random() * 3);
+  stream.style.zIndex = `${depth}`;
+  stream.style.opacity = [0.15, 0.25, 0.4][depth];
+
+  const duration = 1.5 + Math.random() * 1.5;
+  stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
+
+  const length = Math.floor(Math.random() * 14) + 6;
+  const glyphs = [];
+
+  if (Math.random() < 0.01) {
+    const message = phrases[Math.floor(Math.random() * phrases.length)];
+    message.split('').forEach((char, i) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      if (i === 0) span.classList.add('head-char');
+      glyphs.push(span);
+    });
+  } else {
+    for (let j = 0; j < length; j++) {
+      const span = document.createElement('span');
+      span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+      if (j === 0) span.classList.add('head-char');
+      glyphs.push(span);
     }
-    if (grid[row][col]) return; // skip spawn if no free space found
-
-    const left = col * (100 / gridSize) + Math.random() * (100 / gridSize);
-    const top = row * (100 / gridSize) + Math.random() * (100 / gridSize);
-    markGridCell(row, col);
-
-    const stream = document.createElement('div');
-    stream.classList.add('matrix-char');
-    stream.style.left = `${left}%`;
-    stream.style.top = `${top}vh`;
-    stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
-
-    const depth = Math.floor(Math.random() * 3);
-    stream.style.zIndex = `${depth}`;
-    stream.style.opacity = [0.15, 0.25, 0.4][depth];
-
-    const duration = 1.5 + Math.random() * 1.5;
-    stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
-
-    const length = Math.floor(Math.random() * 14) + 6;
-    const glyphs = [];
-
-    if (Math.random() < 0.01) {
-      const message = phrases[Math.floor(Math.random() * phrases.length)];
-      message.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        if (i === 0) span.classList.add('head-char');
-        glyphs.push(span);
-      });
-    } else {
-      for (let j = 0; j < length; j++) {
-        const span = document.createElement('span');
-        span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
-        if (j === 0) span.classList.add('head-char');
-        glyphs.push(span);
-      }
-    }
-
-    glyphs.forEach(span => stream.appendChild(span));
-    matrixOverlay.appendChild(stream);
-
-    const mutator = setInterval(() => {
-      const spans = stream.querySelectorAll('span');
-      spans.forEach((span) => {
-        if (Math.random() > 0.7) {
-          span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-      });
-    }, 350 + Math.random() * 300);
-
-    setTimeout(() => {
-      stream.remove();
-      clearInterval(mutator);
-    }, duration * 1000 + (doVerticalDrop ? 3000 : 0));
   }
 
+  glyphs.forEach(span => stream.appendChild(span));
+  matrixOverlay.appendChild(stream);
+
+  const mutator = setInterval(() => {
+    const spans = stream.querySelectorAll('span');
+    spans.forEach((span) => {
+      if (Math.random() > 0.7) {
+        span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+    });
+  }, 350 + Math.random() * 300);
+
+  setTimeout(() => {
+    stream.remove();
+    clearInterval(mutator);
+  }, duration * 1000);
+}
+  
   setInterval(() => {
     if (document.querySelectorAll('.matrix-char').length < 40) {
       spawnCharGroup();
