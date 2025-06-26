@@ -802,7 +802,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const matrixOverlay = document.querySelector('.matrix-overlay');
   const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
   const phrases = ['WAKE UP', 'NO ESCAPE', 'FOLLOW THE WHITE RABBIT', 'SYSTEM FAILURE'];
-  const streamCount = 75;
+
+  const streamCount = 50;
   const streamSpacing = 100 / streamCount;
 
   function spawnCharGroup(i) {
@@ -811,6 +812,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const left = i * streamSpacing + (Math.random() * 0.5);
     stream.style.left = `${left}%`;
+
     const verticalJitter = Math.random() * 40;
     stream.style.top = `${verticalJitter}vh`;
     stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
@@ -819,7 +821,7 @@ document.addEventListener("DOMContentLoaded", () => {
     stream.style.zIndex = `${depth}`;
     stream.style.opacity = [0.15, 0.25, 0.4][depth];
 
-    const duration = 2 + Math.random() * 2;
+    const duration = 1.5 + Math.random() * 1.5; // 1.5 to 3s
     stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
 
     const length = Math.floor(Math.random() * 14) + 6;
@@ -862,11 +864,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let index = 0;
   setInterval(() => {
-  if (document.querySelectorAll('.matrix-char').length < 75) {
-    const randomIndex = Math.floor(Math.random() * streamCount);
-    spawnCharGroup(randomIndex);
-  }
-}, 80);
+    if (document.querySelectorAll('.matrix-char').length < 45) {
+      const randomIndex = Math.floor(Math.random() * streamCount);
+      spawnCharGroup(randomIndex);
+    }
+  }, 130);
 
   // 🔦 Add background flicker overlay
   const flickerOverlay = document.createElement('div');
