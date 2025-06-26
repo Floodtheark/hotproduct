@@ -720,3 +720,50 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
   hotproduct.online may earn commissions from qualifying purchases <br>
   Copyright © 2025
 </div>
+<!-- All of your main content here... -->
+
+<!-- 🔻 Matrix rain generator -->
+<script>
+  const matrixOverlay = document.querySelector('.matrix-overlay');
+  const streamCount = 50;
+  for (let i = 0; i < streamCount; i++) {
+    const stream = document.createElement('div');
+    stream.classList.add('matrix-char');
+    const left = Math.floor(Math.random() * 98);
+    stream.style.left = `${left}%`;
+    const duration = (Math.random() * 2 + 2).toFixed(2);
+    stream.style.animationDuration = `${duration}s`;
+    const delay = (Math.random() * 3).toFixed(2);
+    stream.style.animationDelay = `${delay}s`;
+    const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
+    let rain = '';
+    const length = Math.floor(Math.random() * 9) + 6;
+    for (let j = 0; j < length; j++) {
+      rain += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    stream.innerText = rain;
+    matrixOverlay.appendChild(stream);
+  }
+</script>
+
+<!-- 🔁 Matrix mutation script -->
+<script>
+  setInterval(() => {
+    const streams = document.querySelectorAll('.matrix-char');
+    const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
+    streams.forEach(stream => {
+      let newText = '';
+      for (let i = 0; i < stream.innerText.length; i++) {
+        if (Math.random() > 0.92) {
+          newText += chars.charAt(Math.floor(Math.random() * chars.length));
+        } else {
+          newText += stream.innerText[i];
+        }
+      }
+      stream.innerText = newText;
+    });
+  }, 120);
+</script>
+
+</body>
+</html>
