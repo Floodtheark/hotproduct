@@ -64,16 +64,32 @@
     0 0 10px rgba(0, 255, 102, 0.7),
     0 0 14px rgba(0, 255, 102, 0.4);
 
-  filter: blur(0.4px) brightness(1.2);
-  opacity: 0.25;
+  filter: brightness(0.7) blur(0.4px); /* was too bright before */
+  opacity: 0.2;
 }
-    .head-char {
-  color: #ccffcc;
+    
+.head-char {
+  color: #b6ffb6;
   font-weight: bold;
   text-shadow:
-    0 0 6px #b6ffb6,
-    0 0 12px #b6ffb6;
-  opacity: 0.9;
+    0 0 5px #99ff99,
+    0 0 10px #99ff99;
+  opacity: 0.85;
+}
+    body.glitch-mode .matrix-char {
+  animation-name: matrix-fall, matrix-wave, matrix-glitch;
+  animation-duration: 2.2s, 5s, 0.3s;
+  animation-timing-function: linear, ease-in-out, steps(2, jump-none);
+  animation-iteration-count: infinite, infinite, infinite;
+}
+
+@keyframes matrix-glitch {
+  0% { transform: translateX(0) skew(0deg); opacity: 0.2; }
+  20% { transform: translateX(-3px) skew(-5deg); opacity: 0.4; }
+  40% { transform: translateX(3px) skew(5deg); opacity: 0.6; }
+  60% { transform: translateX(-2px) skew(-4deg); opacity: 0.3; }
+  80% { transform: translateX(2px) skew(2deg); opacity: 0.5; }
+  100% { transform: translateX(0) skew(0deg); opacity: 0.2; }
 }
     
 .section-nav {
@@ -814,6 +830,24 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
         stream.style.transform = '';
       }
     });
+  });
+
+  // 💥 Glitch Mode Trigger (click or "G" key)
+  function triggerGlitch(duration = 4000) {
+    document.body.classList.add('glitch-mode');
+    setTimeout(() => {
+      document.body.classList.remove('glitch-mode');
+    }, duration);
+  }
+
+  document.addEventListener('click', () => {
+    triggerGlitch();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'g') {
+      triggerGlitch();
+    }
   });
 </script>
 
