@@ -39,14 +39,6 @@ body.glitch-mode .matrix-char {
   animation-iteration-count: 1, infinite, infinite;
   animation-timing-function: ease-in-out, ease-in-out, steps(2, jump-none);
 }
-    
-body.glitch-mode .matrix-char span:nth-child(2n) {
-  color: #ff1e1e;
-  text-shadow:
-    0 0 3px #ff4d4d,
-    0 0 6px #ff4d4d,
-    0 0 10px rgba(255, 30, 30, 0.5);
-}
 
 .matrix-overlay {
   position: absolute;
@@ -99,6 +91,15 @@ body.glitch-mode .matrix-char span:nth-child(2n) {
     0 0 5px #99ff99,
     0 0 10px #99ff99;
   opacity: 0.85;
+}
+    
+ .glitch-red {
+  color: #ff1e1e !important;
+  text-shadow:
+    0 0 3px #ff4d4d,
+    0 0 6px #ff4d4d,
+    0 0 12px rgba(255, 30, 30, 0.8);
+  transform: scale(1.1) skewX(3deg);
 }
     
 .section-nav {
@@ -781,12 +782,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const matrixOverlay = document.querySelector('.matrix-overlay');
   const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
   const phrases = ['WAKE UP', 'NO ESCAPE', 'FOLLOW THE WHITE RABBIT', 'SYSTEM FAILURE'];
+  const streamCount = 50;
+  const streamSpacing = 100 / streamCount;
 
-  function spawnCharGroup() {
+  function spawnCharGroup(i) {
     const stream = document.createElement('div');
     stream.classList.add('matrix-char');
 
-    stream.style.left = `${Math.random() * 100}%`;
+    const left = i * streamSpacing + Math.random(); // Slight jitter
+    stream.style.left = `${left}%`;
     stream.style.top = `${Math.random() * 100}vh`;
     stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
 
@@ -800,7 +804,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const length = Math.floor(Math.random() * 14) + 6;
     const glyphs = [];
 
-    // Rare message injection
     if (Math.random() < 0.01) {
       const message = phrases[Math.floor(Math.random() * phrases.length)];
       message.split('').forEach((char, i) => {
@@ -810,10 +813,10 @@ document.addEventListener("DOMContentLoaded", () => {
         glyphs.push(span);
       });
     } else {
-      for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length; j++) {
         const span = document.createElement('span');
         span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
-        if (i === 0) span.classList.add('head-char');
+        if (j === 0) span.classList.add('head-char');
         glyphs.push(span);
       }
     }
@@ -821,7 +824,6 @@ document.addEventListener("DOMContentLoaded", () => {
     glyphs.forEach(span => stream.appendChild(span));
     matrixOverlay.appendChild(stream);
 
-    // Mutation loop
     const mutator = setInterval(() => {
       const spans = stream.querySelectorAll('span');
       spans.forEach((span, i) => {
@@ -837,7 +839,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }, duration * 1000);
   }
 
-  setInterval(spawnCharGroup, 75);
+  let index = 0;
+  setInterval(() => {
+    spawnCharGroup(index);
+    index = (index + 1) % streamCount;
+  }, 75);
 });
 
 // Cursor warp
@@ -852,18 +858,28 @@ document.addEventListener('mousemove', (e) => {
   });
 });
 
-// Glitch trigger
+// Glitch trigger + red effect
 function triggerGlitch(duration = 4000) {
   document.body.classList.add('glitch-mode');
-  setTimeout(() => document.body.classList.remove('glitch-mode'), duration);
+
+  const spans = document.querySelectorAll('.matrix-char span');
+  spans.forEach(span => {
+    if (Math.random() < 0.12) {
+      span.classList.add('glitch-red');
+    }
+  });
+
+  setTimeout(() => {
+    document.body.classList.remove('glitch-mode');
+    spans.forEach(span => span.classList.remove('glitch-red'));
+  }, duration);
 }
+
 document.addEventListener('click', () => triggerGlitch());
 document.addEventListener('keydown', (e) => {
   if (e.key.toLowerCase() === 'g') triggerGlitch();
 });
 </script>
-
-
 
 </body>
 </html>
