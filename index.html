@@ -12,27 +12,29 @@
   scroll-behavior: smooth;
 }
     
-    @keyframes green-glow-pulse {
+@keyframes green-glow-pulse {
   0%, 100% {
     text-shadow:
+      0 0 2px #ffffff,
       0 0 4px #00ff66,
-      0 0 8px #00ff66,
-      0 0 12px rgba(0, 255, 102, 0.8);
+      0 0 8px rgba(255, 255, 255, 0.6),
+      0 0 10px rgba(0, 255, 102, 0.7);
     transform: scale(1);
     opacity: 1;
   }
   50% {
     text-shadow:
-      0 0 8px #00ff66,
-      0 0 14px #00ff66,
+      0 0 4px #ffffff,
+      0 0 8px #00ffcc,
+      0 0 14px rgba(255, 255, 255, 0.9),
       0 0 20px rgba(0, 255, 102, 1);
-    transform: scale(1.1);
-    opacity: 0.8;
+    transform: scale(1.15);
+    opacity: 0.85;
   }
 }
 
 .green-glow {
-  animation: green-glow-pulse 1s ease-in-out infinite;
+  animation: green-glow-pulse 1s ease-in-out;
 }
 
     @keyframes screen-shake {
