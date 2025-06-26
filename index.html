@@ -65,26 +65,28 @@ body.glitch-mode .matrix-char span:nth-child(2n) {
 .matrix-char {
   position: absolute;
   top: 0;
-  width: 1.2rem;
-  white-space: nowrap;
+  width: auto;
+  display: inline-block;
   font-family: 'Orbitron', monospace;
   font-size: 18px;
   color: #00ff66;
-  writing-mode: vertical-rl;
   letter-spacing: 1px;
+  writing-mode: vertical-rl;
 
   text-shadow:
     0 0 4px #00ff66,
     0 0 10px rgba(0, 255, 102, 0.7),
     0 0 14px rgba(0, 255, 102, 0.4);
 
-  filter: brightness(0.7) blur(0.4px); /* was too bright before */
+  filter: brightness(0.7) blur(0.4px);
   opacity: 0.2;
 }
     
-  .matrix-char span {
-    display: block;
-    text-shadow:
+.matrix-char span {
+  display: inline-block; /* block or inline-block both OK */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg); /* Optional for top-down flow */
+  text-shadow:
     0 0 2px #00ff66,
     0 0 4px #00ff66,
     0 0 6px rgba(0, 255, 102, 0.3);
@@ -784,11 +786,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const stream = document.createElement('div');
     stream.classList.add('matrix-char');
 
-    const left = Math.random() * 100;
-    const top = Math.random() * 100;
-
-    stream.style.left = `${left}%`;
-    stream.style.top = `${top}vh`;
+    stream.style.left = `${Math.random() * 100}%`;
+    stream.style.top = `${Math.random() * 100}vh`;
     stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
 
     const depth = Math.floor(Math.random() * 3);
@@ -798,55 +797,50 @@ document.addEventListener("DOMContentLoaded", () => {
     const duration = 2 + Math.random() * 2;
     stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
 
-    const length = Math.floor(Math.random() * 18) + 5;
-    let rain = '';
+    const length = Math.floor(Math.random() * 14) + 6;
+    const glyphs = [];
 
-    if (Math.random() < 0.007) {
-      // Rare secret phrase
-      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
-      rain = [...phrase].map((char, idx) =>
-        idx === 0
-          ? `<span class="head-char">${char}</span>`
-          : `<span>${char}</span>`
-      ).join('');
+    // Rare message injection
+    if (Math.random() < 0.01) {
+      const message = phrases[Math.floor(Math.random() * phrases.length)];
+      message.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        if (i === 0) span.classList.add('head-char');
+        glyphs.push(span);
+      });
     } else {
-      rain = `<span class="head-char">${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
-      for (let j = 1; j < length; j++) {
-        rain += `<span>${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
+      for (let i = 0; i < length; i++) {
+        const span = document.createElement('span');
+        span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+        if (i === 0) span.classList.add('head-char');
+        glyphs.push(span);
       }
     }
 
-    stream.innerHTML = rain;
+    glyphs.forEach(span => stream.appendChild(span));
     matrixOverlay.appendChild(stream);
 
-    // Mutate this stream's characters
-    const mutate = setInterval(() => {
-      if (!document.body.contains(stream)) {
-        clearInterval(mutate);
-        return;
-      }
-
+    // Mutation loop
+    const mutator = setInterval(() => {
       const spans = stream.querySelectorAll('span');
       spans.forEach((span, i) => {
         if (Math.random() > 0.7) {
-          const newChar = chars.charAt(Math.floor(Math.random() * chars.length));
-          span.textContent = newChar;
+          span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
         }
       });
-    }, 300 + Math.random() * 300); // 300–600ms
+    }, 350 + Math.random() * 300);
 
-    // Remove after lifespan
     setTimeout(() => {
       stream.remove();
-      clearInterval(mutate);
+      clearInterval(mutator);
     }, duration * 1000);
   }
 
-  // Spawn loop
-  setInterval(spawnCharGroup, 80);
+  setInterval(spawnCharGroup, 75);
 });
 
-// Cursor warp effect
+// Cursor warp
 document.addEventListener('mousemove', (e) => {
   const streams = document.querySelectorAll('.matrix-char');
   streams.forEach(stream => {
@@ -858,7 +852,7 @@ document.addEventListener('mousemove', (e) => {
   });
 });
 
-// Glitch mode toggle
+// Glitch trigger
 function triggerGlitch(duration = 4000) {
   document.body.classList.add('glitch-mode');
   setTimeout(() => document.body.classList.remove('glitch-mode'), duration);
@@ -868,6 +862,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key.toLowerCase() === 'g') triggerGlitch();
 });
 </script>
+
 
 
 </body>
