@@ -14,10 +14,9 @@
     
 @keyframes matrix-flicker {
   0%, 100% { opacity: 0; }
-  10% { opacity: 0.3; }
-  40% { opacity: 0.6; }
+  20% { opacity: 0.6; }
+  50% { opacity: 0.2; }
   70% { opacity: 0.4; }
-  90% { opacity: 0.2; }
 }
 
 @keyframes matrix-wave {
@@ -39,6 +38,14 @@ body.glitch-mode .matrix-char {
   animation-duration: 4s, 3s, 0.3s;
   animation-iteration-count: 1, infinite, infinite;
   animation-timing-function: ease-in-out, ease-in-out, steps(2, jump-none);
+}
+    
+body.glitch-mode .matrix-char span:nth-child(2n) {
+  color: #ff1e1e;
+  text-shadow:
+    0 0 3px #ff4d4d,
+    0 0 6px #ff4d4d,
+    0 0 10px rgba(255, 30, 30, 0.5);
 }
 
 .matrix-overlay {
@@ -73,6 +80,14 @@ body.glitch-mode .matrix-char {
 
   filter: brightness(0.7) blur(0.4px); /* was too bright before */
   opacity: 0.2;
+}
+    
+  .matrix-char span {
+    display: block;
+    text-shadow:
+    0 0 2px #00ff66,
+    0 0 4px #00ff66,
+    0 0 6px rgba(0, 255, 102, 0.3);
 }
     
 .head-char {
@@ -760,91 +775,100 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
 
 <!-- 🔻 Matrix rain generator -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const matrixOverlay = document.querySelector('.matrix-overlay');
-    const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
+document.addEventListener("DOMContentLoaded", () => {
+  const matrixOverlay = document.querySelector('.matrix-overlay');
+  const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
+  const phrases = ['WAKE UP', 'NO ESCAPE', 'FOLLOW THE WHITE RABBIT', 'SYSTEM FAILURE'];
 
-    function spawnCharGroup() {
-      const stream = document.createElement('div');
-      stream.classList.add('matrix-char');
+  function spawnCharGroup() {
+    const stream = document.createElement('div');
+    stream.classList.add('matrix-char');
 
-      // Random position
-      stream.style.left = `${Math.random() * 100}vw`;
-      stream.style.top = `${Math.random() * 100}vh`;
+    const left = Math.random() * 100;
+    const top = Math.random() * 100;
 
-      // Font size
-      stream.style.fontSize = `${Math.floor(Math.random() * 8) + 14}px`;
+    stream.style.left = `${left}%`;
+    stream.style.top = `${top}vh`;
+    stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
 
-      // Animation
-      stream.style.animationName = 'matrix-flicker, matrix-wave';
-      stream.style.animationDuration = '4s, 3s';
-      stream.style.animationTimingFunction = 'ease-in-out, ease-in-out';
-      stream.style.animationIterationCount = '1, infinite';
+    const depth = Math.floor(Math.random() * 3);
+    stream.style.zIndex = `${depth}`;
+    stream.style.opacity = [0.15, 0.25, 0.4][depth];
 
-      // Opacity and blur
-      stream.style.opacity = Math.random() * 0.4 + 0.25;
-      stream.style.filter = 'brightness(0.6) blur(0.5px)';
+    const duration = 2 + Math.random() * 2;
+    stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
 
-      // Random group length (2–5 characters)
-      const groupLength = Math.floor(Math.random() * 4) + 2;
-      let rain = '';
-      for (let i = 0; i < groupLength; i++) {
-        const char = chars.charAt(Math.floor(Math.random() * chars.length));
-        rain += `<div${i === 0 ? ' class="head-char"' : ''}>${char}</div>`;
+    const length = Math.floor(Math.random() * 18) + 5;
+    let rain = '';
+
+    if (Math.random() < 0.007) {
+      // Rare secret phrase
+      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+      rain = [...phrase].map((char, idx) =>
+        idx === 0
+          ? `<span class="head-char">${char}</span>`
+          : `<span>${char}</span>`
+      ).join('');
+    } else {
+      rain = `<span class="head-char">${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
+      for (let j = 1; j < length; j++) {
+        rain += `<span>${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
+      }
+    }
+
+    stream.innerHTML = rain;
+    matrixOverlay.appendChild(stream);
+
+    // Mutate this stream's characters
+    const mutate = setInterval(() => {
+      if (!document.body.contains(stream)) {
+        clearInterval(mutate);
+        return;
       }
 
-      stream.innerHTML = rain;
-      matrixOverlay.appendChild(stream);
-
-      // Mutate with slower pace
-      const mutate = setInterval(() => {
-        if (!document.body.contains(stream)) {
-          clearInterval(mutate);
-          return;
+      const spans = stream.querySelectorAll('span');
+      spans.forEach((span, i) => {
+        if (Math.random() > 0.7) {
+          const newChar = chars.charAt(Math.floor(Math.random() * chars.length));
+          span.textContent = newChar;
         }
-        const newRain = [];
-        for (let i = 0; i < groupLength; i++) {
-          const mutateNow = Math.random() > 0.85;
-          const char = mutateNow
-            ? chars.charAt(Math.floor(Math.random() * chars.length))
-            : stream.children[i]?.innerText || chars.charAt(Math.floor(Math.random() * chars.length));
-          newRain.push(`<div${i === 0 ? ' class="head-char"' : ''}>${char}</div>`);
-        }
-        stream.innerHTML = newRain.join('');
-      }, 800 + Math.random() * 400); // 800–1200ms
+      });
+    }, 300 + Math.random() * 300); // 300–600ms
 
-      // Remove after 4s
-      setTimeout(() => {
-        stream.remove();
-        clearInterval(mutate);
-      }, 4000);
-    }
-
-    // Initial burst
-    for (let i = 0; i < 60; i++) {
-      spawnCharGroup();
-    }
-
-    // Ongoing generation
-    setInterval(() => {
-      spawnCharGroup();
-      if (Math.random() > 0.6) spawnCharGroup();
-    }, 200);
-  });
-
-  // Glitch trigger (unchanged)
-  function triggerGlitch(duration = 4000) {
-    document.body.classList.add('glitch-mode');
+    // Remove after lifespan
     setTimeout(() => {
-      document.body.classList.remove('glitch-mode');
-    }, duration);
+      stream.remove();
+      clearInterval(mutate);
+    }, duration * 1000);
   }
 
-  document.addEventListener('click', () => triggerGlitch());
-  document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'g') triggerGlitch();
+  // Spawn loop
+  setInterval(spawnCharGroup, 80);
+});
+
+// Cursor warp effect
+document.addEventListener('mousemove', (e) => {
+  const streams = document.querySelectorAll('.matrix-char');
+  streams.forEach(stream => {
+    const rect = stream.getBoundingClientRect();
+    const dx = rect.left + rect.width / 2 - e.clientX;
+    const dy = rect.top + rect.height / 2 - e.clientY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    stream.style.transform = dist < 120 ? `translate(${dx * 0.05}px, ${dy * 0.05}px)` : '';
   });
+});
+
+// Glitch mode toggle
+function triggerGlitch(duration = 4000) {
+  document.body.classList.add('glitch-mode');
+  setTimeout(() => document.body.classList.remove('glitch-mode'), duration);
+}
+document.addEventListener('click', () => triggerGlitch());
+document.addEventListener('keydown', (e) => {
+  if (e.key.toLowerCase() === 'g') triggerGlitch();
+});
 </script>
+
 
 </body>
 </html>
