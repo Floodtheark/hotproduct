@@ -918,7 +918,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // 🟥 Glitch trigger with 5% chance to "go nuclear"
 function triggerGlitch(duration = 4000) {
   document.body.classList.add('glitch-mode');
-  triggerShake(); // 🚀 Shake when glitch hits
 
   const spans = document.querySelectorAll('.matrix-char span');
   const goNuclear = Math.random() < 0.05;
