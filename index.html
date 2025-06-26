@@ -751,15 +751,21 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
     for (let i = 0; i < streamCount; i++) {
       const stream = document.createElement('div');
       stream.classList.add('matrix-char');
+
       const left = Math.floor(i * (100 / streamCount));
       stream.style.left = `${left}%`;
-      const duration = (Math.random() * 2 + 2).toFixed(2);
+
+      stream.style.top = `-${Math.floor(Math.random() * 100)}vh`;
+      stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
+
+      const duration = (Math.random() * 2 + 1 + (i % 3) * 0.5).toFixed(2);
       stream.style.animationDuration = `${duration}s`;
+
       const delay = (Math.random() * 3).toFixed(2);
       stream.style.animationDelay = `${delay}s`;
 
       const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
-      const length = Math.floor(Math.random() * 9) + 6;
+      const length = Math.floor(Math.random() * 20) + 4;
 
       let rain = `<span class="head-char">${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
       for (let j = 1; j < length; j++) {
@@ -771,7 +777,6 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
     }
   });
 </script>
-
 
 <!-- Matrix mutation script stays the same -->
 <script>
