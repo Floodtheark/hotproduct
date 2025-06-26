@@ -11,6 +11,17 @@
     html {
   scroll-behavior: smooth;
 }
+    @keyframes drop-down {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0.4;
+  }
+}
+
     @keyframes screen-shake {
   0% { transform: translate(0, 0); }
   20% { transform: translate(-5px, 3px); }
@@ -814,18 +825,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const matrixOverlay = document.querySelector('.matrix-overlay');
   const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
   const phrases = ['WAKE UP', 'NO ESCAPE', 'FOLLOW THE WHITE RABBIT', 'SYSTEM FAILURE'];
+  
+  const gridSize = 10;
+  const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(false));
+  const cellLifetime = 2000; // how long a grid cell is "occupied"
 
-  const streamCount = 50;
-  const streamSpacing = 100 / streamCount;
+  function markGridCell(row, col) {
+    grid[row][col] = true;
+    setTimeout(() => {
+      grid[row][col] = false;
+    }, cellLifetime);
+  }
 
-  function spawnCharGroup(i) {
+  function spawnCharGroup() {
+    let attempts = 0;
+    let row, col;
+
+    // Try up to 10 times to find an unoccupied grid cell
+    while (attempts < 10) {
+      row = Math.floor(Math.random() * gridSize);
+      col = Math.floor(Math.random() * gridSize);
+      if (!grid[row][col]) break;
+      attempts++;
+    }
+    if (grid[row][col]) return; // skip spawn if no free space found
+
+    const left = col * (100 / gridSize) + Math.random() * (100 / gridSize);
+    const top = row * (100 / gridSize) + Math.random() * (100 / gridSize);
+    markGridCell(row, col);
+
     const stream = document.createElement('div');
     stream.classList.add('matrix-char');
-
-    const left = Math.random() * 100;
     stream.style.left = `${left}%`;
-
-    const top = Math.random() * 90;
     stream.style.top = `${top}vh`;
     stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
 
@@ -833,8 +864,14 @@ document.addEventListener("DOMContentLoaded", () => {
     stream.style.zIndex = `${depth}`;
     stream.style.opacity = [0.15, 0.25, 0.4][depth];
 
-    const duration = 1.5 + Math.random() * 1.5; // 1.5 to 3s
-    stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
+    const duration = 1.5 + Math.random() * 1.5;
+    const doVerticalDrop = Math.random() < 0.05;
+
+    if (doVerticalDrop) {
+      stream.style.animation = `drop-down ${duration * 4}s linear forwards`;
+    } else {
+      stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
+    }
 
     const length = Math.floor(Math.random() * 14) + 6;
     const glyphs = [];
@@ -871,18 +908,16 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       stream.remove();
       clearInterval(mutator);
-    }, duration * 1000);
+    }, duration * 1000 + (doVerticalDrop ? 3000 : 0));
   }
 
-  let index = 0;
   setInterval(() => {
-    if (document.querySelectorAll('.matrix-char').length < 45) {
-      const randomIndex = Math.floor(Math.random() * streamCount);
-      spawnCharGroup(randomIndex);
+    if (document.querySelectorAll('.matrix-char').length < 40) {
+      spawnCharGroup();
     }
   }, 130);
 
-  // 🔦 Add background flicker overlay
+  // 🔦 Background Flicker
   const flickerOverlay = document.createElement('div');
   flickerOverlay.style.position = 'fixed';
   flickerOverlay.style.top = 0;
@@ -905,19 +940,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 200);
 
-  // 🌀 Randomized screen shake trigger
+  // 🌀 Screen Shake
   setInterval(() => {
-    if (Math.random() < 0.04) { // 4% chance every 400ms
+    if (Math.random() < 0.04) {
       triggerShake();
     }
   }, 400);
+}); // end DOMContentLoaded
 
-}); // <-- this is the end of DOMContentLoaded
-
-
-// 🟥 Glitch trigger with 5% chance to "go nuclear"
+// Glitch with Shake
 function triggerGlitch(duration = 4000) {
   document.body.classList.add('glitch-mode');
+  triggerShake();
 
   const spans = document.querySelectorAll('.matrix-char span');
   const goNuclear = Math.random() < 0.05;
@@ -933,20 +967,21 @@ function triggerGlitch(duration = 4000) {
     spans.forEach(span => span.classList.remove('glitch-red'));
   }, duration);
 }
-  
-  function triggerShake() {
+
+// Shake effect
+function triggerShake() {
   const overlay = document.querySelector('.matrix-overlay');
   overlay.classList.add('shake');
   setTimeout(() => overlay.classList.remove('shake'), 300);
 }
 
-// Triggers
+// Click + Key Trigger Glitch
 document.addEventListener('click', () => triggerGlitch());
 document.addEventListener('keydown', (e) => {
   if (e.key.toLowerCase() === 'g') triggerGlitch();
 });
 
-// Cursor warp
+// Cursor warp effect
 document.addEventListener('mousemove', (e) => {
   const streams = document.querySelectorAll('.matrix-char');
   streams.forEach(stream => {
