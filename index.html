@@ -11,6 +11,18 @@
     html {
   scroll-behavior: smooth;
 }
+    @keyframes screen-shake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-5px, 3px); }
+  40% { transform: translate(4px, -4px); }
+  60% { transform: translate(-3px, 2px); }
+  80% { transform: translate(5px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+.shake {
+  animation: screen-shake 0.3s ease-in-out;
+}
     
 @keyframes matrix-flicker {
   0%, 100% { opacity: 0; }
@@ -897,6 +909,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 🟥 Glitch trigger with 5% chance to "go nuclear"
 function triggerGlitch(duration = 4000) {
   document.body.classList.add('glitch-mode');
+  triggerShake(); // 🚀 Shake when glitch hits
 
   const spans = document.querySelectorAll('.matrix-char span');
   const goNuclear = Math.random() < 0.05;
@@ -911,6 +924,12 @@ function triggerGlitch(duration = 4000) {
     document.body.classList.remove('glitch-mode');
     spans.forEach(span => span.classList.remove('glitch-red'));
   }, duration);
+}
+  
+  function triggerShake() {
+  const overlay = document.querySelector('.matrix-overlay');
+  overlay.classList.add('shake');
+  setTimeout(() => overlay.classList.remove('shake'), 300);
 }
 
 // Triggers
