@@ -764,61 +764,75 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
     const matrixOverlay = document.querySelector('.matrix-overlay');
     const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
 
-    function spawnChar() {
-      const char = document.createElement('span');
-      char.classList.add('matrix-char');
-
-      // Random character and font size
-      const letter = chars.charAt(Math.floor(Math.random() * chars.length));
-      char.innerHTML = `<span class="head-char">${letter}</span>`;
+    function spawnCharGroup() {
+      const stream = document.createElement('div');
+      stream.classList.add('matrix-char');
 
       // Random position
-      char.style.left = `${Math.random() * 100}vw`;
-      char.style.top = `${Math.random() * 100}vh`;
-      char.style.fontSize = `${Math.floor(Math.random() * 10) + 12}px`;
+      stream.style.left = `${Math.random() * 100}vw`;
+      stream.style.top = `${Math.random() * 100}vh`;
 
-      // Animation setup
-      char.style.animationName = 'matrix-flicker, matrix-wave';
-      char.style.animationDuration = '4s, 3s';
-      char.style.animationTimingFunction = 'ease-in-out, ease-in-out';
-      char.style.animationIterationCount = '1, infinite';
+      // Font size
+      stream.style.fontSize = `${Math.floor(Math.random() * 8) + 14}px`;
+
+      // Animation
+      stream.style.animationName = 'matrix-flicker, matrix-wave';
+      stream.style.animationDuration = '4s, 3s';
+      stream.style.animationTimingFunction = 'ease-in-out, ease-in-out';
+      stream.style.animationIterationCount = '1, infinite';
 
       // Opacity and blur
-      char.style.opacity = Math.random() * 0.4 + 0.2;
-      char.style.filter = 'brightness(0.6) blur(0.5px)';
+      stream.style.opacity = Math.random() * 0.4 + 0.25;
+      stream.style.filter = 'brightness(0.6) blur(0.5px)';
 
-      matrixOverlay.appendChild(char);
+      // Random group length (2–5 characters)
+      const groupLength = Math.floor(Math.random() * 4) + 2;
+      let rain = '';
+      for (let i = 0; i < groupLength; i++) {
+        const char = chars.charAt(Math.floor(Math.random() * chars.length));
+        rain += `<div${i === 0 ? ' class="head-char"' : ''}>${char}</div>`;
+      }
 
-      // Mutate the character randomly during its life
+      stream.innerHTML = rain;
+      matrixOverlay.appendChild(stream);
+
+      // Mutate with slower pace
       const mutate = setInterval(() => {
-        if (!document.body.contains(char)) {
+        if (!document.body.contains(stream)) {
           clearInterval(mutate);
           return;
         }
-        const newChar = chars.charAt(Math.floor(Math.random() * chars.length));
-        char.innerHTML = `<span class="head-char">${newChar}</span>`;
-      }, 100 + Math.random() * 300);
+        const newRain = [];
+        for (let i = 0; i < groupLength; i++) {
+          const mutateNow = Math.random() > 0.85;
+          const char = mutateNow
+            ? chars.charAt(Math.floor(Math.random() * chars.length))
+            : stream.children[i]?.innerText || chars.charAt(Math.floor(Math.random() * chars.length));
+          newRain.push(`<div${i === 0 ? ' class="head-char"' : ''}>${char}</div>`);
+        }
+        stream.innerHTML = newRain.join('');
+      }, 800 + Math.random() * 400); // 800–1200ms
 
-      // Remove after fade
+      // Remove after 4s
       setTimeout(() => {
-        char.remove();
+        stream.remove();
         clearInterval(mutate);
       }, 4000);
     }
 
-    // Spawn multiple initially
+    // Initial burst
     for (let i = 0; i < 60; i++) {
-      spawnChar();
+      spawnCharGroup();
     }
 
-    // Continue spawning randomly
+    // Ongoing generation
     setInterval(() => {
-      spawnChar();
-      if (Math.random() > 0.7) spawnChar(); // sometimes spawn extra
+      spawnCharGroup();
+      if (Math.random() > 0.6) spawnCharGroup();
     }, 200);
   });
 
-  // Glitch trigger stays the same
+  // Glitch trigger (unchanged)
   function triggerGlitch(duration = 4000) {
     document.body.classList.add('glitch-mode');
     setTimeout(() => {
@@ -830,27 +844,6 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
   document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'g') triggerGlitch();
   });
-</script>
-
-<!-- Matrix mutation script (unchanged) -->
-<script>
-  setInterval(() => {
-    const streams = document.querySelectorAll('.matrix-char');
-    const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
-
-    streams.forEach(stream => {
-      const original = stream.innerText;
-      let newText = `<span class="head-char">${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
-      for (let i = 1; i < original.length; i++) {
-        if (Math.random() > 0.92) {
-          newText += chars.charAt(Math.floor(Math.random() * chars.length));
-        } else {
-          newText += original[i];
-        }
-      }
-      stream.innerHTML = newText;
-    });
-  }, 120);
 </script>
 
 </body>
