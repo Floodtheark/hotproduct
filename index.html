@@ -904,7 +904,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 60 + Math.random() * 100);
     }
   }, 200);
-});
+
+  // 🌀 Randomized screen shake trigger
+  setInterval(() => {
+    if (Math.random() < 0.04) { // 4% chance every 400ms
+      triggerShake();
+    }
+  }, 400);
+
+}); // <-- this is the end of DOMContentLoaded
+
 
 // 🟥 Glitch trigger with 5% chance to "go nuclear"
 function triggerGlitch(duration = 4000) {
