@@ -25,6 +25,13 @@
     opacity: 0;
   }
 }
+    @keyframes matrix-wave {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(1.5px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(-1.5px); }
+  100% { transform: translateX(0); }
+}
 
 .matrix-overlay {
   position: absolute;
@@ -748,22 +755,37 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
   document.addEventListener("DOMContentLoaded", () => {
     const matrixOverlay = document.querySelector('.matrix-overlay');
     const streamCount = 50;
+
     for (let i = 0; i < streamCount; i++) {
       const stream = document.createElement('div');
       stream.classList.add('matrix-char');
 
+      // Horizontal position (even spacing)
       const left = Math.floor(i * (100 / streamCount));
       stream.style.left = `${left}%`;
 
+      // Random vertical start
       stream.style.top = `-${Math.floor(Math.random() * 100)}vh`;
+
+      // Font size (14–20px)
       stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
 
-      const duration = (Math.random() * 2 + 1 + (i % 3) * 0.5).toFixed(2);
-      stream.style.animationDuration = `${duration}s`;
+      // Layered depth: opacity, z-index, speed
+      const depth = Math.floor(Math.random() * 3); // 0–2
+      stream.style.zIndex = `${depth}`;
+      stream.style.opacity = [0.15, 0.25, 0.4][depth];
+
+      // Combine wave + fall animations
+      const duration = (Math.random() * 1.5 + 2 + depth * 0.5).toFixed(2);
+      stream.style.animationName = 'matrix-fall, matrix-wave';
+      stream.style.animationDuration = `${duration}s, ${duration * 3}s`;
+      stream.style.animationTimingFunction = 'linear, ease-in-out';
+      stream.style.animationIterationCount = 'infinite, infinite';
 
       const delay = (Math.random() * 3).toFixed(2);
-      stream.style.animationDelay = `${delay}s`;
+      stream.style.animationDelay = `${delay}s, ${delay / 2}s`;
 
+      // Generate rain string
       const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
       const length = Math.floor(Math.random() * 20) + 4;
 
@@ -776,18 +798,34 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
       matrixOverlay.appendChild(stream);
     }
   });
+
+  // Cursor-hover reactive warping
+  document.addEventListener('mousemove', (e) => {
+    const streams = document.querySelectorAll('.matrix-char');
+    streams.forEach(stream => {
+      const rect = stream.getBoundingClientRect();
+      const dx = rect.left + rect.width / 2 - e.clientX;
+      const dy = rect.top + rect.height / 2 - e.clientY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < 120) {
+        stream.style.transform = `translate(${dx * 0.05}px, ${dy * 0.05}px)`;
+      } else {
+        stream.style.transform = '';
+      }
+    });
+  });
 </script>
 
-<!-- Matrix mutation script stays the same -->
+<!-- Matrix mutation script (unchanged) -->
 <script>
   setInterval(() => {
     const streams = document.querySelectorAll('.matrix-char');
     const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
-    
+
     streams.forEach(stream => {
       const original = stream.innerText;
       let newText = `<span class="head-char">${chars.charAt(Math.floor(Math.random() * chars.length))}</span>`;
-
       for (let i = 1; i < original.length; i++) {
         if (Math.random() > 0.92) {
           newText += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -795,7 +833,6 @@ mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)
           newText += original[i];
         }
       }
-
       stream.innerHTML = newText;
     });
   }, 120);
