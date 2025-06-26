@@ -11,6 +11,29 @@
     html {
   scroll-behavior: smooth;
 }
+    @keyframes glyph-flash-burst {
+  0% {
+    color: #ffffff;
+    text-shadow:
+      0 0 4px #ffffff,
+      0 0 8px #ffffff,
+      0 0 12px #ccffcc;
+    transform: scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    color: #00ff66;
+    text-shadow:
+      0 0 2px #00ff66,
+      0 0 4px #00ff66;
+    transform: scale(1);
+    opacity: 0.25;
+  }
+}
+
+.flash-burst {
+  animation: glyph-flash-burst 0.35s ease-out;
+}
     
 @keyframes white-hot-glow {
   0%, 100% {
@@ -917,8 +940,13 @@ function spawnCharGroup() {
   const spans = stream.querySelectorAll('span');
   spans.forEach((span) => {
     if (Math.random() > 0.7) {
-      span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
-    }
+  span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+
+  if (Math.random() < 0.2) { // 20% chance to flash-burst
+    span.classList.add('flash-burst');
+    setTimeout(() => span.classList.remove('flash-burst'), 400);
+  }
+}
 
     // 🌟 Randomly trigger green glow
     if (Math.random() < 0.03) { // ~3% chance per frame
