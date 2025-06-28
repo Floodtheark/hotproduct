@@ -208,6 +208,14 @@ body.glitch-mode .matrix-char {
   margin-bottom: 1.5rem;
   font-size: 1.75rem;
 }
+  .glow-hover {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.glow-hover:hover {
+  filter: brightness(1.1) contrast(1.2);
+  transform: scale(1.02);
+}
 
 .product-section {
   display: flex;
@@ -538,25 +546,27 @@ body.glitch-mode .matrix-char {
   </div>
 </section>
 
-<!-- Starter Kit -->
-<section class="highlight-section" id="starter-kit">
-  <h2>📚 Digital Playbook Collection</h2>
+<!-- Affiliate Marketing Starter Kit -->
+<section class="highlight-section" id="amsk">
+  <h2>🔥 Affiliate Marketing Starter Kit</h2>
   <div class="product-section">
     <div class="product-entry starter-kit">
+      <!-- CLICKABLE IMAGE WITH GLOW -->
       <div class="product-image">
         <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank"
-         class="matrix-button"
-        onclick="gtag('event', 'click', { event_category: 'CTA', event_label: 'Starter Kit' });">
-        Get the Starter Kit →
-       </a>
+           onclick="gtag('event', 'click', { event_category: 'CTA', event_label: 'Starter Kit Cover Click' });">
+          <img src="images/TN.png" alt="Affiliate Marketing Starter Kit Cover" class="glow-hover">
+        </a>
       </div>
+
+      <!-- CONTENT -->
       <div class="product-content">
         <div class="buy-top">
           <div class="buy-button-wrap">
             <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank">Get the Starter Kit →</a>
-            <img src="flame.gif" alt="flame" class="flame-overlay">
           </div>
         </div>
+
         <h2>Build Your Digital Empire: Affiliate Marketing Starter Kit</h2>
         <p><strong>Launch Your Affiliate Biz from Scratch — This Week</strong></p>
         <p>Tired of watching everyone else print $$$ with affiliate links and digital marketing while you sit on the sidelines?</p>
