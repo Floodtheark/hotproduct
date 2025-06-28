@@ -548,31 +548,23 @@ body.glitch-mode .matrix-char {
 </section>
 
 <!-- Affiliate Marketing Starter Kit -->
-<section class="highlight-section" id="amsk">
+<section class="highlight-section" id="amsk-kit">
   <h2>🔥 Affiliate Marketing Starter Kit</h2>
   <div class="product-section">
-    <div class="product-entry starter-kit">
-
-      <!-- COVER IMAGE (hover glow only) -->
+    <div class="product-entry book-red">
       <div class="product-image">
         <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank"
-           onclick="gtag('event', 'click', { event_category: 'CTA', event_label: 'Starter Kit Cover Click' });">
-          <img src="images/TN.png" alt="Affiliate Marketing Starter Kit Cover" class="amsk-glow">
+           onclick="gtag('event', 'click', { event_category: 'CTA', event_label: 'AMSK Image Click' });">
+          <img src="images/TN.png" alt="Affiliate Marketing Starter Kit Cover" class="glow-orange">
         </a>
       </div>
-
-      <!-- PRODUCT CONTENT -->
       <div class="product-content">
-        <!-- BUY BUTTON with flame -->
         <div class="buy-top">
           <div class="buy-button-wrap">
-            <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank">
-              Get the Starter Kit →
-            </a>
+            <a href="https://hotproductonline.gumroad.com/l/ymoxxl" target="_blank">Get the Starter Kit →</a>
             <img src="flame.gif" alt="flame" class="flame-overlay">
           </div>
         </div>
-
         <h2>Build Your Digital Empire: Affiliate Marketing Starter Kit</h2>
         <p><strong>Launch Your Affiliate Biz from Scratch — This Week</strong></p>
         <p>Tired of watching everyone else print $$$ with affiliate links and digital marketing while you sit on the sidelines?</p>
@@ -584,7 +576,6 @@ body.glitch-mode .matrix-char {
           <li>✅ Templates, checklists, and growth shortcuts</li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
@@ -666,10 +657,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const matrixOverlay = document.querySelector('.matrix-overlay');
   const chars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ネメミモムヌノヒヘホビベボパピプペポ';
   const phrases = ['WAKE UP', 'NO ESCAPE', 'FOLLOW THE WHITE RABBIT', 'SYSTEM FAILURE'];
-  
+
   const gridSize = 10;
   const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(false));
-  const cellLifetime = 2000; // how long a grid cell is "occupied"
+  const cellLifetime = 2000;
 
   function markGridCell(row, col) {
     grid[row][col] = true;
@@ -678,97 +669,90 @@ document.addEventListener("DOMContentLoaded", () => {
     }, cellLifetime);
   }
 
-function spawnCharGroup() {
-  let attempts = 0;
-  let row, col;
+  function spawnCharGroup() {
+    let attempts = 0;
+    let row, col;
 
-  while (attempts < 10) {
-    row = Math.floor(Math.random() * gridSize);
-    col = Math.floor(Math.random() * gridSize);
-    if (!grid[row][col]) break;
-    attempts++;
-  }
-  if (grid[row][col]) return;
-
-  const cellSize = 100 / gridSize;
-  const padding = cellSize * 0.25;
-
-  const left = col * cellSize + padding + Math.random() * (cellSize - 2 * padding);
-  const top = row * cellSize + padding + Math.random() * (cellSize - 2 * padding);
-  markGridCell(row, col);
-
-  const stream = document.createElement('div');
-  stream.classList.add('matrix-char');
-  stream.style.left = ${left}%;
-  stream.style.top = ${top}%; // ← fixed from vh to %
-
-  stream.style.fontSize = ${Math.floor(Math.random() * 6) + 14}px;
-
-  const depth = Math.floor(Math.random() * 3);
-  stream.style.zIndex = ${depth};
-  stream.style.opacity = [0.15, 0.25, 0.4][depth];
-
-  const duration = 1.5 + Math.random() * 1.5;
-  stream.style.animation = matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite;
-
-  const length = Math.floor(Math.random() * 14) + 6;
-  const glyphs = [];
-
-  if (Math.random() < 0.01) {
-    const message = phrases[Math.floor(Math.random() * phrases.length)];
-    message.split('').forEach((char, i) => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      if (i === 0) span.classList.add('head-char');
-      glyphs.push(span);
-    });
-  } else {
-    for (let j = 0; j < length; j++) {
-      const span = document.createElement('span');
-      span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
-      if (j === 0) span.classList.add('head-char');
-      glyphs.push(span);
+    while (attempts < 10) {
+      row = Math.floor(Math.random() * gridSize);
+      col = Math.floor(Math.random() * gridSize);
+      if (!grid[row][col]) break;
+      attempts++;
     }
-  }
+    if (grid[row][col]) return;
 
-  glyphs.forEach(span => stream.appendChild(span));
-  matrixOverlay.appendChild(stream);
+    const cellSize = 100 / gridSize;
+    const padding = cellSize * 0.25;
 
- const mutator = setInterval(() => {
-  const spans = stream.querySelectorAll('span');
-  spans.forEach((span) => {
-    if (Math.random() > 0.7) {
-  span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+    const left = col * cellSize + padding + Math.random() * (cellSize - 2 * padding);
+    const top = row * cellSize + padding + Math.random() * (cellSize - 2 * padding);
+    markGridCell(row, col);
 
-  if (Math.random() < 0.2) { // 20% chance to flash-burst
-    span.classList.add('flash-burst');
-    setTimeout(() => span.classList.remove('flash-burst'), 400);
-  }
-}
+    const stream = document.createElement('div');
+    stream.classList.add('matrix-char');
+    stream.style.left = `${left}%`;
+    stream.style.top = `${top}%`;
+    stream.style.fontSize = `${Math.floor(Math.random() * 6) + 14}px`;
 
-    // 🌟 Randomly trigger green glow
-    if (Math.random() < 0.03) { // ~3% chance per frame
-      span.classList.add('green-glow');
-      setTimeout(() => {
-        span.classList.remove('green-glow');
-      }, 1000); // duration of one glow pulse
+    const depth = Math.floor(Math.random() * 3);
+    stream.style.zIndex = `${depth}`;
+    stream.style.opacity = [0.15, 0.25, 0.4][depth];
+    const duration = 1.5 + Math.random() * 1.5;
+    stream.style.animation = `matrix-flicker ${duration}s ease-in-out 1, matrix-wave ${duration * 2}s ease-in-out infinite`;
+
+    const length = Math.floor(Math.random() * 14) + 6;
+    const glyphs = [];
+
+    if (Math.random() < 0.01) {
+      const message = phrases[Math.floor(Math.random() * phrases.length)];
+      message.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        if (i === 0) span.classList.add('head-char');
+        glyphs.push(span);
+      });
+    } else {
+      for (let j = 0; j < length; j++) {
+        const span = document.createElement('span');
+        span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+        if (j === 0) span.classList.add('head-char');
+        glyphs.push(span);
+      }
     }
-  });
-}, 350 + Math.random() * 300);
 
-  setTimeout(() => {
-    stream.remove();
-    clearInterval(mutator);
-  }, duration * 1000);
-}
-  
+    glyphs.forEach(span => stream.appendChild(span));
+    matrixOverlay.appendChild(stream);
+
+    const mutator = setInterval(() => {
+      const spans = stream.querySelectorAll('span');
+      spans.forEach((span) => {
+        if (Math.random() > 0.7) {
+          span.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+          if (Math.random() < 0.2) {
+            span.classList.add('flash-burst');
+            setTimeout(() => span.classList.remove('flash-burst'), 400);
+          }
+        }
+
+        if (Math.random() < 0.03) {
+          span.classList.add('green-glow');
+          setTimeout(() => span.classList.remove('green-glow'), 1000);
+        }
+      });
+    }, 350 + Math.random() * 300);
+
+    setTimeout(() => {
+      stream.remove();
+      clearInterval(mutator);
+    }, duration * 1000);
+  }
+
   setInterval(() => {
     if (document.querySelectorAll('.matrix-char').length < 40) {
       spawnCharGroup();
     }
   }, 130);
 
-  // 🔦 Background Flicker
   const flickerOverlay = document.createElement('div');
   flickerOverlay.style.position = 'fixed';
   flickerOverlay.style.top = 0;
@@ -791,18 +775,15 @@ function spawnCharGroup() {
     }
   }, 200);
 
-  // 🌀 Screen Shake
   setInterval(() => {
     if (Math.random() < 0.04) {
       triggerShake();
     }
   }, 400);
-}); // end DOMContentLoaded
+});
 
-// Glitch with Shake
 function triggerGlitch(duration = 4000) {
   document.body.classList.add('glitch-mode');
-
   const spans = document.querySelectorAll('.matrix-char span');
   const goNuclear = Math.random() < 0.05;
 
@@ -818,20 +799,17 @@ function triggerGlitch(duration = 4000) {
   }, duration);
 }
 
-// Shake effect
 function triggerShake() {
   const overlay = document.querySelector('.matrix-overlay');
   overlay.classList.add('shake');
   setTimeout(() => overlay.classList.remove('shake'), 300);
 }
 
-// Click + Key Trigger Glitch
 document.addEventListener('click', () => triggerGlitch());
 document.addEventListener('keydown', (e) => {
   if (e.key.toLowerCase() === 'g') triggerGlitch();
 });
 
-// Cursor warp effect
 document.addEventListener('mousemove', (e) => {
   const streams = document.querySelectorAll('.matrix-char');
   streams.forEach(stream => {
@@ -839,7 +817,7 @@ document.addEventListener('mousemove', (e) => {
     const dx = rect.left + rect.width / 2 - e.clientX;
     const dy = rect.top + rect.height / 2 - e.clientY;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    stream.style.transform = dist < 120 ? translate(${dx * 0.05}px, ${dy * 0.05}px) : '';
+    stream.style.transform = dist < 120 ? `translate(${dx * 0.05}px, ${dy * 0.05}px)` : '';
   });
 });
 </script>
